@@ -1,0 +1,29 @@
+<div>
+    <h1>Detail Page</h1>
+
+    <div class="pt-item-detail-header">
+
+        <div *ngIf="item" class="pt-item-detail-header-title-row">
+            <img width="50" height="50" class="pt-item-detail-avatar" [src]="item.assignee.avatar" />
+            <span class="pt-item-detail-header-title">{{ item.title }}</span>
+        </div>
+
+        <div>
+            <app-detail-section-selector [selectedScreen]="selectedDetailsScreen" (screenSelected)="onScreenSelected($event)"></app-detail-section-selector>
+        </div>
+    </div>
+
+    <div [ngSwitch]="selectedDetailsScreen">
+        <ng-template [ngSwitchCase]="'details'">
+            <span>deets</span>
+        </ng-template>
+        <ng-template [ngSwitchCase]="'tasks'">
+            <span>tasks</span>
+        </ng-template>
+        <ng-template [ngSwitchCase]="'chitchat'">
+            <span>chit chat</span>
+        </ng-template>
+    </div>
+
+
+</div>

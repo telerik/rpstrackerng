@@ -1,0 +1,11 @@
+<div class="selector">
+    <div class="selector-btn-wrapper" [class.active]="selectedScreen === 'details'">
+        <button (click)="onDetailsTap($event)" class="selector-btn" [class.active]="selectedScreen === 'details'">Details</button>
+    </div>
+    <div class="selector-btn-wrapper" [class.active]="selectedScreen === 'tasks'">
+        <button (click)="onTasksTap($event)" class="selector-btn" [class.active]="selectedScreen === 'tasks'">Tasks</button>
+    </div>
+    <div class="selector-btn-wrapper" [class.active]="selectedScreen === 'chitchat'">
+        <button (click)="onChitchatTap($event)" class="selector-btn" [class.active]="selectedScreen === 'chitchat'">Chitchat</button>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+.li-indicator {
+    height: 58px;
+    width: 10px;
+    text-align: left;
+}
+
+.li-indicator label {
+    width: 5px;
+    height: 58px;
+    horizontal-align: left;
+}
+
+.li-info-wrapper {
+    margin-left: 5px;
+}
+
+.li-title {
+    font-size: 14px;
+    color: #4b5833;
+}
+
+.li-avatar {
+    background-color: #eeeeee;
+    width: 50px;
+    height: 50px;
+}
+
+.li-estimate {
+    font-size: 10px;
+    font-weight: bold;
+    color: #555a97;
+}
+
+.li-date {
+    font-size: 12px;
+    color: #555a97;
+    margin-left: 10px;
+}
+
+.indicator-pbi {
+    background-color: #527FD7;
+}
+
+.indicator-bug {
+    background-color: #D75252;
+}
+
+.indicator-chore {
+    background-color: #666666;
+}
+
+.indicator-impediment {
+    background-color: #D7C152;
+}
