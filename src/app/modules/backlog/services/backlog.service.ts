@@ -9,6 +9,9 @@ import { PtItem, PtUser, PtTask, PtComment } from '../../../core/models/domain';
 import { PtNewItem, PtNewTask, PtNewComment } from '../../../shared/models/dto';
 import { PriorityEnum, StatusEnum } from '../../../core/models/domain/enums';
 import { getUserAvatarUrl } from '../../../core/helpers/user-avatar-helper';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { PresetType } from 'src/app/core/models/domain/types';
 
 @Injectable()
 export class BacklogService {
@@ -31,25 +34,17 @@ export class BacklogService {
         private zone: NgZone
     ) { }
 
-    public fetchItems() {
-        return new Promise((resolve, reject) => {
-            this.repo.getPtItems(
-                this.currentPreset,
-                // tslint:disable-next-line:no-non-null-assertion
-                this.currentUserId!,
-                (ptItems: PtItem[]) => {
+    public getItems(preset: PresetType): Observable<PtItem[]> {
+        return this.repo.getPtItems(preset, this.currentUserId)
+            .pipe(
+                map((ptItems: PtItem[]) => {
                     ptItems.forEach(i => {
                         this.setUserAvatarUrl(i.assignee);
                         i.comments.forEach(c => this.setUserAvatarUrl(c.user));
                     });
-
-                    this.zone.run(() => {
-                        this.store.set('backlogItems', ptItems);
-                        resolve();
-                    });
-                }
+                    return ptItems;
+                })
             );
-        });
     }
 
     public getItemFromCacheOrServer(id: number) {
@@ -70,25 +65,14 @@ export class BacklogService {
         }
     }
 
-    public getPtItem(id: number) {
-        this.repo.getPtItem(id,
-            (ptItem: PtItem) => {
-
-                this.setUserAvatarUrl(ptItem.assignee);
-                ptItem.comments.forEach(c => this.setUserAvatarUrl(c.user));
-
-                this.zone.run(() => {
-                    this.store.set('currentSelectedItem', ptItem);
-
-                    // optimistically update the item list with the new item
-                    const updatedItems = this.store.value.backlogItems.map((item) => {
-                        return item.id === id ? ptItem : item;
-                    });
-
-                    this.store.set('backlogItems', updatedItems);
-                });
-            }
-        );
+    public getPtItem(id: number): Observable<PtItem> {
+        return this.repo.getPtItem(id)
+            .pipe(
+                tap((ptItem: PtItem) => {
+                    this.setUserAvatarUrl(ptItem.assignee);
+                    ptItem.comments.forEach(c => this.setUserAvatarUrl(c.user));
+                })
+            );
     }
 
     public addNewPtItem(newItem: PtNewItem, assignee: PtUser) {
@@ -117,12 +101,8 @@ export class BacklogService {
         );
     }
 
-    public updatePtItem(item: PtItem) {
-        this.repo.updatePtItem(item,
-            (updatedItem: PtItem) => {
-                this.getPtItem(updatedItem.id);
-            }
-        );
+    public updatePtItem(item: PtItem): Observable<PtItem> {
+        return this.repo.updatePtItem(item);
     }
 
     public deletePtItem(item: PtItem) {

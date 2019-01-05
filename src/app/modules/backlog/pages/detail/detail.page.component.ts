@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Subscription } from 'rxjs';
 
 import { DetailScreenType } from 'src/app/shared/models/ui/types/detail-screens';
-import { Observable, Subscription } from 'rxjs';
 import { PtItem } from 'src/app/core/models/domain';
-import { ActivatedRoute } from '@angular/router';
 import { BacklogService } from '../../services/backlog.service';
 import { PtUserService, NavigationService } from 'src/app/core/services';
-import { Store } from 'src/app/core/state/app-store';
 
 @Component({
     selector: 'app-backlog-detail-page',
@@ -14,29 +14,24 @@ import { Store } from 'src/app/core/state/app-store';
 })
 export class DetailPageComponent implements OnInit, OnDestroy {
 
-
     private itemId = 0;
-    private currentItemSub: Subscription;
+    private currentItemSub: Subscription | undefined;
     public selectedDetailsScreen: DetailScreenType = 'details';
-    public currentSelectedItem$: Observable<PtItem> = this.store.select<PtItem>('currentSelectedItem');
 
-    public item?: PtItem;
+    public item: PtItem | undefined;
 
     constructor(
         private activatedRoute: ActivatedRoute,
         private backlogService: BacklogService,
         private ptUserService: PtUserService,
-        private navigationService: NavigationService,
-        private store: Store
-    ) {
-        this.currentItemSub = this.currentSelectedItem$.subscribe(i => {
-            this.item = i;
-        });
-    }
+        private navigationService: NavigationService
+    ) { }
 
     public ngOnInit() {
         this.itemId = parseInt(this.activatedRoute.snapshot.params['id'], undefined);
-        this.backlogService.getItemFromCacheOrServer(this.itemId);
+
+        this.currentItemSub = this.backlogService.getPtItem(this.itemId)
+            .subscribe(item => this.item = item);
 
         const screen = this.activatedRoute.snapshot.params['screen'] as DetailScreenType;
         if (screen === 'details' || screen === 'tasks' || screen === 'chitchat') {
@@ -51,7 +46,16 @@ export class DetailPageComponent implements OnInit, OnDestroy {
         this.navigationService.navigate([`/detail/${this.itemId}/${screen}`]);
     }
 
+    public onItemSaved(item: PtItem) {
+        this.currentItemSub = this.backlogService.updatePtItem(item)
+            .subscribe(updateItem => {
+                this.item = updateItem;
+            });
+    }
+
     public ngOnDestroy(): void {
-        this.currentItemSub.unsubscribe();
+        if (this.currentItemSub) {
+            this.currentItemSub.unsubscribe();
+        }
     }
 }

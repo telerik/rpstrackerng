@@ -5,12 +5,11 @@ import { environment as env } from '../../../../environments/environment';
 
 import { PtTask, PtItem, PtComment } from '../../../core/models/domain';
 import { PresetType } from 'src/app/core/models/domain/types';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class BacklogRepository {
-    constructor(
-        private http: HttpClient
-    ) { }
+    constructor(private http: HttpClient) { }
 
     private getFilteredBacklogUrl(currentPreset: PresetType, currentUserId?: number) {
         switch (currentPreset) {
@@ -63,19 +62,15 @@ export class BacklogRepository {
 
     public getPtItems(
         currentPreset: PresetType,
-        currentUserId: number,
-        successHandler: (data: PtItem[]) => void
-    ) {
-        this.http.get<PtItem[]>(this.getFilteredBacklogUrl(currentPreset, currentUserId))
-            .subscribe(successHandler);
+        currentUserId: number | undefined
+    ): Observable<PtItem[]> {
+        return this.http.get<PtItem[]>(this.getFilteredBacklogUrl(currentPreset, currentUserId));
     }
 
     public getPtItem(
         ptItemId: number,
-        successHandler: (ptItem: PtItem) => void
-    ) {
-        this.http.get<PtItem>(this.getPtItemUrl(ptItemId))
-            .subscribe(successHandler);
+    ): Observable<PtItem> {
+        return this.http.get<PtItem>(this.getPtItemUrl(ptItemId));
     }
 
     public insertPtItem(
@@ -91,13 +86,11 @@ export class BacklogRepository {
 
     public updatePtItem(
         item: PtItem,
-        successHandler: (updatedItem: PtItem) => void
-    ) {
-        this.http.put<PtItem>(
+    ): Observable<PtItem> {
+        return this.http.put<PtItem>(
             this.putPtItemUrl(item.id),
             { item: item }
-        )
-            .subscribe(successHandler);
+        );
     }
 
     public deletePtItem(

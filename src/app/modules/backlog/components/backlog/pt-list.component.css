@@ -4,10 +4,10 @@
     text-align: left;
 }
 
-.li-indicator label {
+.li-indicator div {
     width: 5px;
     height: 58px;
-    horizontal-align: left;
+
 }
 
 .li-info-wrapper {

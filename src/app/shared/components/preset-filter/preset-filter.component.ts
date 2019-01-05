@@ -3,10 +3,10 @@ import { NavigationService } from 'src/app/core/services';
 import { PresetType } from 'src/app/core/models/domain/types';
 
 @Component({
-    selector: 'app-menu',
-    templateUrl: 'menu.component.html'
+    selector: 'app-preset-filter',
+    templateUrl: 'preset-filter.component.html'
 })
-export class MenuComponent {
+export class PresetFilterComponent {
 
     constructor(
         private navigationService: NavigationService
@@ -14,9 +14,5 @@ export class MenuComponent {
 
     public onSelectPresetTap(preset: PresetType) {
         this.navigationService.navigate(['backlog', preset]);
-    }
-
-    public onSettingsTap() {
-        this.navigationService.navigate(['settings']);
     }
 }

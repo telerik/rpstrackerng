@@ -2,21 +2,25 @@
     List
 </h2>
 
-<div *ngFor="let item of items" class="li-wrapper" (click)="listItemTap(item)">
+<ul>
+    <li *ngFor="let item of items" class="li-wrapper" (click)="listItemTap(item)">
 
-    <div [class]="getIndicatorClass(item)"></div>
+        <div class="li-indicator">
+            <div [class]="getIndicatorClass(item)"></div>
+        </div>
 
-    <div class="li-avatar">
-        <img *ngIf="item.assignee" [src]="item.assignee.avatar" class="li-avatar" />
-    </div>
+        <div class="li-avatar">
+            <img *ngIf="item.assignee" [src]="item.assignee.avatar" class="li-avatar" />
+        </div>
 
-    <div class="li-info-wrapper">
-        <span class="li-title">{{ item.title }}</span>
-        <span class="li-estimate">{{ 'estimate: ' + item.estimate }}</span>
-    </div>
+        <div class="li-info-wrapper">
+            <span class="li-title">{{ item.title }}</span>
+            <span class="li-estimate">{{ 'estimate: ' + item.estimate }}</span>
+        </div>
 
-    <div>
-        <span class="li-date">{{ item.dateCreated | date }}</span>
-    </div>
+        <div>
+            <span class="li-date">{{ item.dateCreated | date }}</span>
+        </div>
 
-</div>
+    </li>
+</ul>

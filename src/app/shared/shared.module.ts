@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
-import { MenuComponent } from './components/menu/menu.component';
+import { FormsModule } from '@angular/forms';
+import { PresetFilterComponent } from './components/preset-filter/preset-filter.component';
+
+
 
 @NgModule({
-    imports: [],
+    imports: [
+        FormsModule
+    ],
     exports: [
-        MenuComponent
+        FormsModule,
+        PresetFilterComponent
     ],
     declarations: [
-        MenuComponent
+        PresetFilterComponent
     ],
     providers: [],
 })

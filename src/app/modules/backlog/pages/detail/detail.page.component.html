@@ -1,9 +1,9 @@
-<div>
+<div *ngIf="item">
     <h1>Detail Page</h1>
 
     <div class="pt-item-detail-header">
 
-        <div *ngIf="item" class="pt-item-detail-header-title-row">
+        <div class="pt-item-detail-header-title-row">
             <img width="50" height="50" class="pt-item-detail-avatar" [src]="item.assignee.avatar" />
             <span class="pt-item-detail-header-title">{{ item.title }}</span>
         </div>
@@ -15,7 +15,7 @@
 
     <div [ngSwitch]="selectedDetailsScreen">
         <ng-template [ngSwitchCase]="'details'">
-            <span>deets</span>
+            <app-item-details [item]="item" (itemSaved)="onItemSaved($event)"></app-item-details>
         </ng-template>
         <ng-template [ngSwitchCase]="'tasks'">
             <span>tasks</span>

@@ -2,10 +2,10 @@
     <h1>Backlog Page</h1>
 
     <div>
-        <app-menu></app-menu>
+        <app-preset-filter></app-preset-filter>
     </div>
 
     <div>
-        <app-list [items]="items$ | async" (listItemSelected)="selectListItem($event)"></app-list>
+        <app-list [items]="items" (listItemSelected)="selectListItem($event)"></app-list>
     </div>
 </div>
