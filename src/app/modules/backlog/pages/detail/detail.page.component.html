@@ -1,21 +1,15 @@
 <div *ngIf="item">
-    <h1>Detail Page</h1>
-
-    <div class="pt-item-detail-header">
-
-        <div class="pt-item-detail-header-title-row">
-            <img width="50" height="50" class="pt-item-detail-avatar" [src]="item.assignee.avatar" />
-            <span class="pt-item-detail-header-title">{{ item.title }}</span>
-        </div>
-
-        <div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1 class="h2">{{ item.title }}</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
             <app-detail-section-selector [selectedScreen]="selectedDetailsScreen" (screenSelected)="onScreenSelected($event)"></app-detail-section-selector>
         </div>
     </div>
 
+
     <div [ngSwitch]="selectedDetailsScreen">
         <ng-template [ngSwitchCase]="'details'">
-            <app-item-details [item]="item" (itemSaved)="onItemSaved($event)"></app-item-details>
+            <app-item-details [item]="item" (itemSaved)="onItemSaved($event)" (usersRequested)="onUsersRequested($event)"></app-item-details>
         </ng-template>
         <ng-template [ngSwitchCase]="'tasks'">
             <span>tasks</span>
@@ -24,6 +18,4 @@
             <span>chit chat</span>
         </ng-template>
     </div>
-
-
 </div>

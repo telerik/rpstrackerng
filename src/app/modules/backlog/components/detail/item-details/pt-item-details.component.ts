@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 
-import { PtItem } from 'src/app/core/models/domain';
+import { PtItem, PtUser } from 'src/app/core/models/domain';
 import { PtItemDetailsEditFormModel, ptItemToFormModel } from 'src/app/shared/models/forms';
 import { PtItemType } from 'src/app/core/models/domain/types';
 import { PriorityEnum } from 'src/app/core/models/domain/enums';
 import { ItemType, PT_ITEM_STATUSES, PT_ITEM_PRIORITIES } from 'src/app/core/constants';
+import { Observable } from 'rxjs';
+import { Store } from 'src/app/core/state/app-store';
 
 @Component({
     selector: 'app-item-details',
@@ -15,6 +17,9 @@ export class PtItemDetailsComponent implements OnInit {
 
     @Input() item: PtItem | undefined;
     @Output() itemSaved = new EventEmitter<PtItem>();
+    @Output() usersRequested = new EventEmitter<string>();
+
+    public users$: Observable<PtUser[]> = this.store.select<PtUser[]>('users');
 
     private selectedTypeValue: PtItemType | undefined;
     private selectedPriorityValue: PriorityEnum | undefined;
@@ -24,7 +29,9 @@ export class PtItemDetailsComponent implements OnInit {
     public statusesProvider = PT_ITEM_STATUSES;
     public prioritiesProvider = PT_ITEM_PRIORITIES;
 
-    constructor() { }
+    constructor(
+        private store: Store
+    ) { }
 
     public ngOnInit() {
         if (this.item) {

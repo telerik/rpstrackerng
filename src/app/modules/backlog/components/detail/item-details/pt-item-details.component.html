@@ -1,58 +1,58 @@
-<h4>deets</h4>
+<form>
 
-<div>
-    <label>
-        Title
-        <input [(ngModel)]="itemForm.title" (blur)="onBlurTextField()" />
-    </label>
-</div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-10">
+            <input class="form-control" [(ngModel)]="itemForm.title" (blur)="onBlurTextField()" name="title" />
+        </div>
+    </div>
 
-<div>
-    <label>
-        Description
-        <input [(ngModel)]="itemForm.description" (blur)="onBlurTextField()" />
-    </label>
-</div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" [(ngModel)]="itemForm.description" (blur)="onBlurTextField()" name="description"></textarea>
+        </div>
+    </div>
 
-<div>
-    <label>
-        Item Type
-        <select [(ngModel)]="itemForm.typeStr" (ngModelChange)="onDropdownChange()">
-            <option *ngFor="let itemType of itemTypesProvider" [ngValue]="itemType">{{itemType}}</option>
-        </select>
-    </label>
-</div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Item Type</label>
+        <div class="col-sm-10">
+            <select class="form-control" [(ngModel)]="itemForm.typeStr" (ngModelChange)="onDropdownChange()" name="itemType">
+                <option *ngFor="let itemType of itemTypesProvider" [ngValue]="itemType">{{itemType}}</option>
+            </select>
+        </div>
+    </div>
 
-<div>
-    <label>
-        Status
-        <select [(ngModel)]="itemForm.statusStr" (ngModelChange)="onDropdownChange()">
-            <option *ngFor="let status of statusesProvider" [ngValue]="status">{{status}}</option>
-        </select>
-    </label>
-</div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Status</label>
+        <div class="col-sm-10">
+            <select class="form-control" [(ngModel)]="itemForm.statusStr" (ngModelChange)="onDropdownChange()" name="status">
+                <option *ngFor="let status of statusesProvider" [ngValue]="status">{{status}}</option>
+            </select>
+        </div>
+    </div>
 
-<div>
-    <label>
-        Estimate
-        <input type="number" step="1" min="0" max="20" [(ngModel)]="itemForm.estimate" (blur)="onBlurTextField()" />
-    </label>
-</div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Estimate</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="range" step="1" min="0" max="20" [(ngModel)]="itemForm.estimate" (blur)="onBlurTextField()"
+                name="estimate" />
+        </div>
+    </div>
 
-<div>
-    <label>
-        Priority
-        <select [(ngModel)]="itemForm.priorityStr" (ngModelChange)="onDropdownChange()">
-            <option *ngFor="let priority of prioritiesProvider" [ngValue]="priority">{{priority}}</option>
-        </select>
-    </label>
-</div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Priority</label>
+        <div class="col-sm-10">
+            <select class="form-control" [(ngModel)]="itemForm.priorityStr" (ngModelChange)="onDropdownChange()" name="priority">
+                <option *ngFor="let priority of prioritiesProvider" [ngValue]="priority">{{priority}}</option>
+            </select>
+        </div>
+    </div>
 
-<div>
-    <label>
-        Assignee
-        <select [(ngModel)]="itemForm.assigneeName" (ngModelChange)="onDropdownChange()">
-            <option *ngFor="let status of statusesProvider" [ngValue]="status">{{status}}</option>
-        </select>
-    </label>
-</div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Assignee</label>
+        <div class="col-sm-10">
+
+        </div>
+    </div>
+</form>

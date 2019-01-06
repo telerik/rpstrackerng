@@ -8,15 +8,23 @@ import { Store } from '../state/app-store';
 @Injectable()
 export class PtUserService {
 
-    private get usersUrl() { return `${env.apiEndpoint}/users`; }
+    private getUsersUrl(nameFilter: string): string {
+        let url = `${env.apiEndpoint}/users`;
+        if (nameFilter) {
+            url = url + '?name=' + nameFilter;
+        }
+        return url;
+    }
 
     constructor(
         private http: HttpClient,
         private store: Store
     ) { }
 
-    public fetchUsers() {
-        this.http.get<PtUser[]>(this.usersUrl)
+    public fetchUsers(nameFilter: string) {
+        // tslint:disable-next-line:no-debugger
+        debugger;
+        this.http.get<PtUser[]>(this.getUsersUrl(nameFilter))
             .subscribe((data: PtUser[]) => {
                 data.forEach(u => {
                     u.avatar = `${env.apiEndpoint}/photo/${u.id}`;

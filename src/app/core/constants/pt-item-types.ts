@@ -50,13 +50,13 @@ export class ItemType {
     public static imageResFromType(ptItemType: PtItemType): string {
         switch (ptItemType) {
             case PT_ITEM_TYPE_PBI:
-                return 'res://ipbi';
+                return 'assets/img/icon_pbi.png';
             case PT_ITEM_TYPE_BUG:
-                return 'res://ibug';
+                return 'assets/img/icon_bug.png';
             case PT_ITEM_TYPE_CHORE:
-                return 'res://ichore';
+                return 'assets/img/icon_chore.png';
             case PT_ITEM_TYPE_IMPEDIMENT:
-                return 'res://iimpediment';
+                return 'assets/img/icon_impediment.png';
             default:
                 return '';
         }

@@ -17,6 +17,10 @@ export class PtListComponent {
         return ItemType.indicatorClassFromType(item.type);
     }
 
+    public getIndicatorImage(item: PtItem) {
+        return ItemType.imageResFromType(item.type);
+    }
+
     public listItemTap(item: PtItem) {
         this.listItemSelected.emit(item);
     }

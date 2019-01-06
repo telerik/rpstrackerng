@@ -28,6 +28,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
     ) { }
 
     public ngOnInit() {
+
         this.itemId = parseInt(this.activatedRoute.snapshot.params['id'], undefined);
 
         this.currentItemSub = this.backlogService.getPtItem(this.itemId)
@@ -44,6 +45,12 @@ export class DetailPageComponent implements OnInit, OnDestroy {
     public onScreenSelected(screen: DetailScreenType) {
         this.selectedDetailsScreen = screen;
         this.navigationService.navigate([`/detail/${this.itemId}/${screen}`]);
+    }
+
+    public onUsersRequested(name: string) {
+        // tslint:disable-next-line:no-debugger
+        debugger;
+        this.ptUserService.fetchUsers(name);
     }
 
     public onItemSaved(item: PtItem) {

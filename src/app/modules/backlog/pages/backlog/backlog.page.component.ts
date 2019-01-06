@@ -10,7 +10,8 @@ import { PresetType } from 'src/app/core/models/domain/types';
 
 @Component({
     selector: 'app-backlog',
-    templateUrl: 'backlog.page.component.html'
+    templateUrl: 'backlog.page.component.html',
+    styleUrls: ['backlog.page.component.css']
 })
 export class BacklogPageComponent implements OnInit {
 
