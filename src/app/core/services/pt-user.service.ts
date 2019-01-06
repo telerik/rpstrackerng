@@ -22,8 +22,6 @@ export class PtUserService {
     ) { }
 
     public fetchUsers(nameFilter: string) {
-        // tslint:disable-next-line:no-debugger
-        debugger;
         this.http.get<PtUser[]>(this.getUsersUrl(nameFilter))
             .subscribe((data: PtUser[]) => {
                 data.forEach(u => {

@@ -1,5 +1,4 @@
 <form>
-
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Title</label>
         <div class="col-sm-10">
@@ -51,8 +50,36 @@
 
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Assignee</label>
-        <div class="col-sm-10">
 
+        <div class="col-sm-10">
+            <img [src]="selectedAssignee.avatar" class="li-avatar rounded" />
+            <span>{{ itemForm.assigneeName }}</span>
+
+            <button class="btn btn-sm btn-outline-secondary" (click)="assigneePickerOpen(content)">Pick assignee</button>
         </div>
     </div>
 </form>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Select Assignee</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let user of users$ | async" class="list-group-item d-flex justify-content-between align-items-center"
+                (click)="modal.close(user)">
+                <span>{{ user.fullName }}</span>
+                <span class="badge ">
+                    <img [src]="user.avatar" class="li-avatar rounded mx-auto d-block" />
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+
+    </div>
+</ng-template>

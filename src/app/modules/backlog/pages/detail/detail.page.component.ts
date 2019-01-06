@@ -48,8 +48,6 @@ export class DetailPageComponent implements OnInit, OnDestroy {
     }
 
     public onUsersRequested(name: string) {
-        // tslint:disable-next-line:no-debugger
-        debugger;
         this.ptUserService.fetchUsers(name);
     }
 
