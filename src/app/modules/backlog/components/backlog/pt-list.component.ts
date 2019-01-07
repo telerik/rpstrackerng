@@ -1,6 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { PtItem } from 'src/app/core/models/domain';
 import { ItemType } from 'src/app/core/constants';
+import { PriorityEnum } from 'src/app/core/models/domain/enums';
 
 @Component({
     selector: 'app-list',
@@ -15,6 +16,11 @@ export class PtListComponent {
 
     public getIndicatorClass(item: PtItem): string {
         return ItemType.indicatorClassFromType(item.type);
+    }
+
+    public getPriorityClass(item: PtItem): string {
+        const indicatorClass = PriorityEnum.getIndicatorClass(item.priority);
+        return indicatorClass;
     }
 
     public getIndicatorImage(item: PtItem) {

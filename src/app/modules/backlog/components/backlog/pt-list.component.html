@@ -1,20 +1,22 @@
 <div class="table-responsive">
-    <table class="table table-striped table-sm">
+    <table class="table table-striped table-sm table-hover">
         <thead>
             <tr>
                 <th></th>
                 <th>Assignee</th>
                 <th>Title</th>
+                <th>Priority</th>
                 <th>Estimate</th>
                 <th>Created</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of items" (click)="listItemTap(item)">
+            <tr *ngFor="let item of items" (click)="listItemTap(item)" class="pt-table-row">
                 <td><img [src]="getIndicatorImage(item)" class="backlog-icon"></td>
                 <td><img *ngIf="item.assignee" [src]="item.assignee.avatar" class="li-avatar rounded mx-auto d-block" /></td>
                 <td><span class="li-title">{{ item.title }}</span></td>
-                <td> <span class="li-estimate">{{ item.estimate }}</span></td>
+                <td><span [class]="'badge ' + getPriorityClass(item)">{{ item.priority }}</span></td>
+                <td><span class="li-estimate">{{ item.estimate }}</span></td>
                 <td><span class="li-date">{{ item.dateCreated | date }}</span></td>
             </tr>
         </tbody>

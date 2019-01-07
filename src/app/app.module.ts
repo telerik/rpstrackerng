@@ -5,8 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { BacklogModule } from './modules/backlog/backlog.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
+    SharedModule,
+    DashboardModule,
     BacklogModule
   ],
   providers: [],

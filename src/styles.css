@@ -111,3 +111,56 @@
     width: 40px;
     height: 40px;
 }
+
+.li-estimate {
+  font-size: 10px;
+  font-weight: bold;
+  color: #555a97;
+}
+
+.li-date {
+  font-size: 12px;
+  color: #555a97;
+  margin-left: 10px;
+}
+
+.indicator-pbi {
+  background-color: #527FD7;
+}
+
+.indicator-bug {
+  background-color: #D75252;
+}
+
+.indicator-chore {
+  background-color: #666666;
+}
+
+.indicator-impediment {
+  background-color: #D7C152;
+}
+
+.priority-critical {
+  color: #fff;
+  background-color: #820101;
+}
+
+.priority-high {
+  color: #fff;
+  background-color: #b27100;
+}
+
+.priority-medium {
+  color: #fff;
+  background-color: #0c6d00;
+}
+
+.priority-low {
+  color: #fff;
+  background-color: #002b6d;
+}
+
+.modal-body {
+  max-height: 400px;
+  overflow: scroll;
+}

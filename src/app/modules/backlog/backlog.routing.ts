@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BacklogPageComponent, DetailPageComponent } from './pages';
-import { PtItemDetailsComponent } from './components/detail/item-details/pt-item-details.component';
-// import { AuthGuard } from '../../core/services';
-
-console.log('BacklogRoutingModule loaded');
 
 const routes: Routes = [
     {

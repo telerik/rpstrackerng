@@ -16,8 +16,11 @@
     <li class="media chitchat-item" *ngFor="let comment of comments$ | async">
         <img [src]="comment.user.avatar" class="mr-3 li-avatar rounded" />
         <div class="media-body">
-            <h5 class="mt-0 mb-1"></h5>
-            <span type="text">{{ comment.title }}</span>
+            <h6 class="mt-0 mb-1"><span>{{ comment.user.fullName }}</span><span class="li-date">{{comment.dateCreated |
+                    date}}</span></h6>
+
+            <span type="text" class="chitchat-text ">{{ comment.title }}</span>
         </div>
+
     </li>
 </ul>

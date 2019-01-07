@@ -43,7 +43,6 @@ export class BacklogPageComponent implements OnInit {
             if (reqPreset) {
                 this.itemsSub = this.backlogService.getItems(reqPreset)
                     .subscribe(items => {
-                        // this.items = items;
                         this.items$.next(items);
                     });
             }
