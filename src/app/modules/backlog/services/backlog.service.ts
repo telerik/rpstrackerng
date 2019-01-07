@@ -75,7 +75,7 @@ export class BacklogService {
             );
     }
 
-    public addNewPtItem(newItem: PtNewItem, assignee: PtUser) {
+    public addNewPtItem(newItem: PtNewItem, assignee: PtUser): Promise<PtItem> {
         const item: PtItem = {
             id: 0,
             title: newItem.title,
@@ -90,15 +90,19 @@ export class BacklogService {
             dateCreated: new Date(),
             dateModified: new Date()
         };
-        this.repo.insertPtItem(
-            item,
-            (nextItem: PtItem) => {
-                this.setUserAvatar(nextItem.assignee);
-                this.zone.run(() => {
-                    this.store.set('backlogItems', [nextItem, ...this.store.value.backlogItems]);
-                });
-            }
-        );
+        return new Promise<PtItem>((resolve, reject) => {
+            this.repo.insertPtItem(
+                item,
+                (nextItem: PtItem) => {
+                    this.setUserAvatar(nextItem.assignee);
+                    /* this.zone.run(() => {
+                         this.store.set('backlogItems', [nextItem, ...this.store.value.backlogItems]);
+                     });
+                     */
+                    resolve(nextItem);
+                }
+            );
+        });
     }
 
     public updatePtItem(item: PtItem): Observable<PtItem> {

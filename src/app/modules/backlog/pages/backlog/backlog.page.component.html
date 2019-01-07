@@ -4,14 +4,13 @@
         <app-preset-filter></app-preset-filter>
 
         <div class="btn-group mr-2">
-            <button type="button" (click)="onAddTap($event)" class="btn btn-sm btn-outline-secondary">Add</button>
+            <button type="button" (click)="onAddTap(content)" class="btn btn-sm btn-outline-secondary">Add</button>
         </div>
-
 
     </div>
 </div>
 
-<app-list [items]="items" (listItemSelected)="selectListItem($event)"></app-list>
+<app-list [items]="items$ | async" (listItemSelected)="selectListItem($event)"></app-list>
 
 
 <ng-template #content let-modal>
@@ -22,17 +21,35 @@
         </button>
     </div>
     <div class="modal-body">
-        <ul class="list-group list-group-flush">
-            <li *ngFor="let user of users$ | async" class="list-group-item d-flex justify-content-between align-items-center"
-                (click)="modal.close(user)">
-                <span>{{ user.fullName }}</span>
-                <span class="badge ">
-                    <img [src]="user.avatar" class="li-avatar rounded mx-auto d-block" />
-                </span>
-            </li>
-        </ul>
+        <form>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-10">
+                    <input class="form-control" [(ngModel)]="newItem.title" name="title" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Description</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" [(ngModel)]="newItem.description" name="description"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Item Type</label>
+                <div class="col-sm-10">
+                    <select class="form-control" [(ngModel)]="newItem.type" name="itemType">
+                        <option *ngFor="let itemType of itemTypesProvider" [ngValue]="itemType">{{itemType}}</option>
+                    </select>
+                </div>
+            </div>
+
+        </form>
     </div>
     <div class="modal-footer">
-
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="!newItem.title" (click)="modal.close(newItem)">Save
+            changes</button>
     </div>
 </ng-template>
