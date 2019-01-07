@@ -52,6 +52,10 @@ export class BacklogRepository {
         return `${env.apiEndpoint}/task/${taskId}`;
     }
 
+    private deletePtTaskUrl(itemId: number, taskId: number) {
+        return `${env.apiEndpoint}/task/${itemId}/${taskId}`;
+    }
+
     private postPtCommentUrl() {
         return `${env.apiEndpoint}/comment`;
     }
@@ -123,6 +127,18 @@ export class BacklogRepository {
         this.http.put<PtTask>(
             this.putPtTaskUrl(task.id),
             { task: task, itemId: ptItemId }
+        )
+            .subscribe(successHandler);
+    }
+
+    public deletePtTask(
+        task: PtTask,
+        ptItemId: number,
+        successHandler: (ok: boolean) => void
+    ) {
+        this.http.post<boolean>(
+            this.deletePtTaskUrl(ptItemId, task.id),
+            {}
         )
             .subscribe(successHandler);
     }

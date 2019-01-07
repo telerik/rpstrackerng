@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Subscription } from 'rxjs';
+import { Subscription, BehaviorSubject } from 'rxjs';
 
 import { DetailScreenType } from 'src/app/shared/models/ui/types/detail-screens';
-import { PtItem } from 'src/app/core/models/domain';
+import { PtItem, PtTask } from 'src/app/core/models/domain';
 import { BacklogService } from '../../services/backlog.service';
 import { PtUserService, NavigationService } from 'src/app/core/services';
+import { PtNewTask, PtTaskUpdate } from 'src/app/shared/models/dto';
 
 @Component({
     selector: 'app-backlog-detail-page',
@@ -19,6 +20,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
     public selectedDetailsScreen: DetailScreenType = 'details';
 
     public item: PtItem | undefined;
+    public tasks$: BehaviorSubject<PtTask[]> = new BehaviorSubject<PtTask[]>([]);
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -32,7 +34,10 @@ export class DetailPageComponent implements OnInit, OnDestroy {
         this.itemId = parseInt(this.activatedRoute.snapshot.params['id'], undefined);
 
         this.currentItemSub = this.backlogService.getPtItem(this.itemId)
-            .subscribe(item => this.item = item);
+            .subscribe(item => {
+                this.item = item;
+                this.tasks$.next(item.tasks);
+            });
 
         const screen = this.activatedRoute.snapshot.params['screen'] as DetailScreenType;
         if (screen === 'details' || screen === 'tasks' || screen === 'chitchat') {
@@ -49,6 +54,42 @@ export class DetailPageComponent implements OnInit, OnDestroy {
 
     public onUsersRequested(name: string) {
         this.ptUserService.fetchUsers(name);
+    }
+
+    public onAddNewTask(newTask: PtNewTask) {
+        if (this.item) {
+            this.backlogService.addNewPtTask(newTask, this.item).then(nextTask => {
+                this.tasks$.next([nextTask].concat(this.tasks$.value));
+            });
+        }
+    }
+
+    public onUpdateTask(taskUpdate: PtTaskUpdate) {
+        if (this.item) {
+            if (taskUpdate.delete) {
+                this.backlogService.deletePtTask(this.item, taskUpdate.task).then(ok => {
+                    if (ok) {
+                        const newTasks = this.tasks$.value.filter(task => {
+                            if (task.id !== taskUpdate.task.id) {
+                                return task;
+                            }
+                        });
+                        this.tasks$.next(newTasks);
+                    }
+                });
+            } else {
+                this.backlogService.updatePtTask(this.item, taskUpdate.task, taskUpdate.toggle, taskUpdate.newTitle).then(updatedTask => {
+                    const newTasks = this.tasks$.value.map(task => {
+                        if (task.id === updatedTask.id) {
+                            return updatedTask;
+                        } else {
+                            return task;
+                        }
+                    });
+                    this.tasks$.next(newTasks);
+                });
+            }
+        }
     }
 
     public onItemSaved(item: PtItem) {

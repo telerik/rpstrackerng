@@ -1,0 +1,27 @@
+<form>
+
+    <div class="form-row align-items-center">
+        <div class="col-sm-6">
+            <input [(ngModel)]="newTaskTitle" placeholder="Enter new task..." class="form-control pt-text-task-add"
+                name="newTask" />
+        </div>
+        <button type="button" (click)="onAddTapped(newTaskTextField, $event)" class="btn btn-primary" [disabled]="!newTaskTitle">Add</button>
+    </div>
+
+    <hr />
+
+    <div *ngFor="let task of tasks$ | async" class="input-group mb-3 col-sm-6">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="checkbox" [checked]="task.completed" (change)="toggleTapped(task)" aria-label="Checkbox for following text input"
+                    [name]="'checked' + task.id" />
+            </div>
+        </div>
+        <input [(ngModel)]="task.title" (ngModelChange)="taskTitleChange(task, $event)" (blur)="taskBlurred(task, $event)"
+            type="text" class="form-control" aria-label="Text input with checkbox" [name]="'tasktitle' + task.id" />
+
+        <div class="input-group-append">
+            <button class="btn btn-danger" type="button" (click)="taskDelete(task)">Delete</button>
+        </div>
+    </div>
+</form>

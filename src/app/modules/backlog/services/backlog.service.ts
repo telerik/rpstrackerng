@@ -118,7 +118,7 @@ export class BacklogService {
         );
     }
 
-    public addNewPtTask(newTask: PtNewTask, currentItem: PtItem) {
+    public addNewPtTask(newTask: PtNewTask, currentItem: PtItem): Promise<PtTask> {
         const task: PtTask = {
             id: 0,
             title: newTask.title,
@@ -126,16 +126,20 @@ export class BacklogService {
             dateCreated: new Date(),
             dateModified: new Date()
         };
-        this.repo.insertPtTask(
-            task,
-            currentItem.id,
-            (_nextTask: PtTask) => {
-                this.getPtItem(currentItem.id);
-            }
-        );
+        return new Promise<PtTask>((resolve, reject) => {
+            this.repo.insertPtTask(
+                task,
+                currentItem.id,
+                (nextTask: PtTask) => {
+                    resolve(nextTask);
+                }
+            );
+        });
+
     }
 
-    public updatePtTask(currentItem: PtItem, task: PtTask, toggle: boolean, newTitle?: string) {
+    public updatePtTask(currentItem: PtItem, task: PtTask, toggle: boolean, newTitle?: string): Promise<PtTask> {
+
         const taskToUpdate: PtTask = {
             id: task.id,
             title: newTitle ? newTitle : task.title,
@@ -144,22 +148,30 @@ export class BacklogService {
             dateModified: new Date()
         };
 
-        const updatedTasks = currentItem.tasks.map(t => {
-            if (t.id === task.id) { return taskToUpdate; } else { return t; }
+        return new Promise<PtTask>((resolve, reject) => {
+            this.repo.updatePtTask(taskToUpdate, currentItem.id,
+                (updatedTask: PtTask) => {
+                    resolve(updatedTask);
+                }
+            );
         });
+    }
 
-        const updatedItem = Object.assign({}, currentItem, { tasks: updatedTasks });
+    public deletePtTask(currentItem: PtItem, task: PtTask): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            this.repo.deletePtTask(task, currentItem.id,
+                (ok: boolean) => {
 
-        // Optimistically update local item
-        this.zone.run(() => {
-            this.store.set('currentSelectedItem', updatedItem);
+                    const updatedTasks = currentItem.tasks.filter(t => {
+                        if (t.id !== task.id) {
+                            return t;
+                        }
+                    });
+                    currentItem.tasks = updatedTasks;
+                    resolve(ok);
+                }
+            );
         });
-
-        this.repo.updatePtTask(taskToUpdate, currentItem.id,
-            (_updatedTask: PtTask) => {
-                this.getPtItem(currentItem.id);
-            }
-        );
     }
 
     public addNewPtComment(newComment: PtNewComment, currentItem: PtItem) {

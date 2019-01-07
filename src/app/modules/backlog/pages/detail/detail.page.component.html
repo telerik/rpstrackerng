@@ -12,7 +12,7 @@
             <app-item-details [item]="item" (itemSaved)="onItemSaved($event)" (usersRequested)="onUsersRequested($event)"></app-item-details>
         </ng-template>
         <ng-template [ngSwitchCase]="'tasks'">
-            <span>tasks</span>
+            <app-item-tasks [tasks$]="tasks$" (addNewTask)="onAddNewTask($event)" (updateTask)="onUpdateTask($event)"></app-item-tasks>
         </ng-template>
         <ng-template [ngSwitchCase]="'chitchat'">
             <span>chit chat</span>
