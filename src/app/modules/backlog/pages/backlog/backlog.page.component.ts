@@ -41,4 +41,14 @@ export class BacklogPageComponent implements OnInit {
         // navigate to detail page
         this.navigationService.navigate(['/detail', item.id]);
     }
+
+    public onAddTap(_args) {
+        const ctx = this.ptModalService.createPtModalContext<null, PtNewItem>(this.vcRef, 'Add New Item', null, null, 'Save');
+        this.ptModalService.createModal(NewItemModalComponent, ctx)
+            .then(result => {
+                if (result) {
+                    this.backlogService.addNewPtItem(result, this.store.value.currentUser);
+                }
+            });
+    }
 }

@@ -135,7 +135,6 @@ export class BacklogService {
                 }
             );
         });
-
     }
 
     public updatePtTask(currentItem: PtItem, task: PtTask, toggle: boolean, newTitle?: string): Promise<PtTask> {
@@ -174,7 +173,7 @@ export class BacklogService {
         });
     }
 
-    public addNewPtComment(newComment: PtNewComment, currentItem: PtItem) {
+    public addNewPtComment(newComment: PtNewComment, currentItem: PtItem): Promise<PtComment> {
         const comment: PtComment = {
             id: 0,
             title: newComment.title,
@@ -182,13 +181,16 @@ export class BacklogService {
             dateCreated: new Date(),
             dateModified: new Date()
         };
-        this.repo.insertPtComment(
-            comment,
-            currentItem.id,
-            (_nextComment: PtComment) => {
-                this.getPtItem(currentItem.id);
-            }
-        );
+        return new Promise<PtComment>((resolve, reject) => {
+            this.repo.insertPtComment(
+                comment,
+                currentItem.id,
+                (nextComment: PtComment) => {
+                    resolve(nextComment);
+                }
+            );
+        });
+
     }
 
     private setUserAvatar(user: PtUser) {

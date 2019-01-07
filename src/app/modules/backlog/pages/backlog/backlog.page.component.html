@@ -2,7 +2,37 @@
     <h1 class="h2">Backlog</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <app-preset-filter></app-preset-filter>
+
+        <div class="btn-group mr-2">
+            <button type="button" (click)="onAddTap($event)" class="btn btn-sm btn-outline-secondary">Add</button>
+        </div>
+
+
     </div>
 </div>
 
 <app-list [items]="items" (listItemSelected)="selectListItem($event)"></app-list>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add New Item</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let user of users$ | async" class="list-group-item d-flex justify-content-between align-items-center"
+                (click)="modal.close(user)">
+                <span>{{ user.fullName }}</span>
+                <span class="badge ">
+                    <img [src]="user.avatar" class="li-avatar rounded mx-auto d-block" />
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+
+    </div>
+</ng-template>

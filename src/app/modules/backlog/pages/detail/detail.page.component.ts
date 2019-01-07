@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Subscription, BehaviorSubject } from 'rxjs';
+import { Subscription, BehaviorSubject, Observable } from 'rxjs';
 
 import { DetailScreenType } from 'src/app/shared/models/ui/types/detail-screens';
-import { PtItem, PtTask } from 'src/app/core/models/domain';
+import { PtItem, PtTask, PtComment, PtUser } from 'src/app/core/models/domain';
 import { BacklogService } from '../../services/backlog.service';
 import { PtUserService, NavigationService } from 'src/app/core/services';
-import { PtNewTask, PtTaskUpdate } from 'src/app/shared/models/dto';
+import { PtNewTask, PtTaskUpdate, PtNewComment } from 'src/app/shared/models/dto';
+import { Store } from 'src/app/core/state/app-store';
 
 @Component({
     selector: 'app-backlog-detail-page',
@@ -21,22 +22,25 @@ export class DetailPageComponent implements OnInit, OnDestroy {
 
     public item: PtItem | undefined;
     public tasks$: BehaviorSubject<PtTask[]> = new BehaviorSubject<PtTask[]>([]);
+    public comments$: BehaviorSubject<PtComment[]> = new BehaviorSubject<PtComment[]>([]);
+    public currentUser$: Observable<PtUser> = this.store.select<PtUser>('currentUser');
 
     constructor(
         private activatedRoute: ActivatedRoute,
         private backlogService: BacklogService,
         private ptUserService: PtUserService,
-        private navigationService: NavigationService
+        private navigationService: NavigationService,
+        private store: Store
     ) { }
 
     public ngOnInit() {
-
         this.itemId = parseInt(this.activatedRoute.snapshot.params['id'], undefined);
 
         this.currentItemSub = this.backlogService.getPtItem(this.itemId)
             .subscribe(item => {
                 this.item = item;
                 this.tasks$.next(item.tasks);
+                this.comments$.next(item.comments);
             });
 
         const screen = this.activatedRoute.snapshot.params['screen'] as DetailScreenType;
@@ -89,6 +93,14 @@ export class DetailPageComponent implements OnInit, OnDestroy {
                     this.tasks$.next(newTasks);
                 });
             }
+        }
+    }
+
+    public onAddNewComment(newComment: PtNewComment) {
+        if (this.item) {
+            this.backlogService.addNewPtComment(newComment, this.item).then(nextComment => {
+                this.comments$.next([nextComment].concat(this.comments$.value));
+            });
         }
     }
 

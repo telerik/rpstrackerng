@@ -15,7 +15,7 @@
             <app-item-tasks [tasks$]="tasks$" (addNewTask)="onAddNewTask($event)" (updateTask)="onUpdateTask($event)"></app-item-tasks>
         </ng-template>
         <ng-template [ngSwitchCase]="'chitchat'">
-            <span>chit chat</span>
+            <app-item-chitchat [comments$]="comments$" [currentUser]="currentUser$ | async" (addNewComment)="onAddNewComment($event)"></app-item-chitchat>
         </ng-template>
     </div>
 </div>
