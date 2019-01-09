@@ -1,5 +1,29 @@
-<h1>
-    Dashboard page
-</h1>
+<div class="dashboard">
 
-<app-active-issues></app-active-issues>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+
+        <div class="col-md order-md-first text-center text-md-left">
+            <h2>
+                <span class="small text-uppercase text-muted d-block">Statistics</span>
+                <span *ngIf="filteredDateStart && filteredDateEnd">{{ filteredDateStart | date }} - {{ filteredDateEnd
+                    | date
+                    }}</span>
+            </h2>
+        </div>
+
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="onMonthRangeTap(3)">3
+                    Months</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="onMonthRangeTap(6)">6
+                    Months</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="onMonthRangeTap(12)">1
+                    Year</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <app-active-issues [statusCounts]="statusCounts$ | async"></app-active-issues>
+</div>

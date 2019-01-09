@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard.routing';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { BacklogRepository } from '../backlog/repositories/backlog.repository';
-import { BacklogService } from '../backlog/services/backlog.service';
+
+import { DashboardRepository } from './repositories/dashboard.repository';
+import { DashboardService } from './services/dashboard.service';
 import { PAGES } from './pages';
 import { COMPONENTS } from './components';
+
 
 
 @NgModule({
@@ -23,8 +25,8 @@ import { COMPONENTS } from './components';
         ...COMPONENTS,
     ],
     providers: [
-        BacklogRepository,
-        BacklogService
+        DashboardRepository,
+        DashboardService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
