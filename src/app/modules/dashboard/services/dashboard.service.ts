@@ -2,8 +2,9 @@ import { Injectable, NgZone } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { DashboardRepository, DashboardFilter } from '../repositories/dashboard.repository';
+import { DashboardRepository } from '../repositories/dashboard.repository';
 import { TypeCounts, PriorityCounts, StatusCounts } from '../models';
+import { DashboardFilter } from 'src/app/shared/models/dto/stats/dashboard-filter';
 
 @Injectable()
 export class DashboardService {

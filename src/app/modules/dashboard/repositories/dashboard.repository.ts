@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { environment as env } from '../../../../environments/environment';
-
 import { Observable } from 'rxjs';
+
+import { environment as env } from '../../../../environments/environment';
 import { StatusCounts, PriorityCounts, TypeCounts } from '../models';
-
-
-export interface DashboardFilter {
-    userId?: number;
-    dateStart?: Date;
-    dateEnd?: Date;
-}
+import { DashboardFilter } from 'src/app/shared/models/dto/stats/dashboard-filter';
 
 @Injectable()
 export class DashboardRepository {

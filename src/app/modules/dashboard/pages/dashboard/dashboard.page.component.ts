@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { BehaviorSubject, Subscription } from 'rxjs';
+
 import { DashboardService } from '../../services/dashboard.service';
-import { DashboardFilter } from '../../repositories/dashboard.repository';
 import { Store } from 'src/app/core/state/app-store';
 import { StatusCounts } from '../../models';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { DashboardFilter } from 'src/app/shared/models/dto/stats/dashboard-filter';
 
 
 interface DateRange {
