@@ -20,9 +20,8 @@ export class PtItemTasksComponent {
 
     public newTaskTitle = EMPTY_STRING;
     private lastUpdatedTitle = EMPTY_STRING;
-    public newTaskTextField = EMPTY_STRING;
 
-    public onAddTapped(newTaskTextField: any) {
+    public onAddTapped() {
         const newTitle = this.newTaskTitle.trim();
         if (newTitle.length === 0) {
             return;
