@@ -10,14 +10,26 @@ export interface PtItemDetailsEditFormModel {
     assigneeName: string;
 }
 
-export function ptItemToFormModel(item: PtItem): PtItemDetailsEditFormModel {
-    return {
-        title: item.title ? item.title : '',
-        description: item.description ? item.description : '',
-        typeStr: item.type,
-        statusStr: item.status,
-        estimate: item.estimate,
-        priorityStr: item.priority,
-        assigneeName: item.assignee ? item.assignee.fullName : 'unassigned'
-    };
+export function ptItemToFormModel(item?: PtItem): PtItemDetailsEditFormModel {
+    if (!item) {
+        return {
+            title: '',
+            description: '',
+            typeStr: '',
+            statusStr: '',
+            estimate: 0,
+            priorityStr: '',
+            assigneeName: ''
+        }
+    } else {
+        return {
+            title: item.title ? item.title : '',
+            description: item.description ? item.description : '',
+            typeStr: item.type,
+            statusStr: item.status,
+            estimate: item.estimate,
+            priorityStr: item.priority,
+            assigneeName: item.assignee ? item.assignee.fullName : 'unassigned'
+        };
+    }
 }
