@@ -1,7 +1,7 @@
 <div class="btn-group mr-2">
-    <button type="button" (click)="onDetailsTap($event)" class="btn btn-sm btn-outline-secondary" [class.active]="selectedScreen === 'details'">Details</button>
+    <button type="button" (click)="onDetailsTap()" class="btn btn-sm btn-outline-secondary" [class.active]="selectedScreen === 'details'">Details</button>
 
-    <button type="button" (click)="onTasksTap($event)" class="btn btn-sm btn-outline-secondary" [class.active]="selectedScreen === 'tasks'">Tasks</button>
+    <button type="button" (click)="onTasksTap()" class="btn btn-sm btn-outline-secondary" [class.active]="selectedScreen === 'tasks'">Tasks</button>
 
-    <button type="button" (click)="onChitchatTap($event)" class="btn btn-sm btn-outline-secondary" [class.active]="selectedScreen === 'chitchat'">Chitchat</button>
+    <button type="button" (click)="onChitchatTap()" class="btn btn-sm btn-outline-secondary" [class.active]="selectedScreen === 'chitchat'">Chitchat</button>
 </div>

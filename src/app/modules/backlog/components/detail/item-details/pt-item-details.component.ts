@@ -24,9 +24,9 @@ export class PtItemDetailsComponent implements OnInit {
 
     private selectedTypeValue: PtItemType | undefined;
     private selectedPriorityValue: PriorityEnum | undefined;
-    private selectedAssignee: PtUser | undefined;
+    public selectedAssignee: PtUser | undefined;
 
-    public itemForm: PtItemDetailsEditFormModel | undefined;
+    public itemForm: PtItemDetailsEditFormModel = ptItemToFormModel();
     public itemTypesProvider = ItemType.List.map((t) => t.PtItemType);
     public statusesProvider = PT_ITEM_STATUSES;
     public prioritiesProvider = PT_ITEM_PRIORITIES;

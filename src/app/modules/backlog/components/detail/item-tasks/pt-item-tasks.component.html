@@ -5,7 +5,7 @@
             <input [(ngModel)]="newTaskTitle" placeholder="Enter new task..." class="form-control pt-text-task-add"
                 name="newTask" />
         </div>
-        <button type="button" (click)="onAddTapped(newTaskTextField, $event)" class="btn btn-primary" [disabled]="!newTaskTitle">Add</button>
+        <button type="button" (click)="onAddTapped()" class="btn btn-primary" [disabled]="!newTaskTitle">Add</button>
     </div>
 
     <hr />

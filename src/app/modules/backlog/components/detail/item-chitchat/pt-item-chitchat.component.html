@@ -1,13 +1,13 @@
 <form>
     <div class="form-row align-items-center">
 
-        <img [src]="currentUser.avatar" class="mr-3 li-avatar rounded" />
+        <img [src]="currentUser?.avatar" class="mr-3 li-avatar rounded" />
 
         <div class="col-sm-6">
             <textarea [(ngModel)]="newCommentText" placeholder="Enter new comment..." class="form-control pt-text-comment-add"
                 name="newComment"></textarea>
         </div>
-        <button type="button" (click)="onAddTapped(newTaskTextField, $event)" class="btn btn-primary" [disabled]="!newCommentText">Add</button>
+        <button type="button" (click)="onAddTapped()" class="btn btn-primary" [disabled]="!newCommentText">Add</button>
     </div>
 </form>
 <hr />
