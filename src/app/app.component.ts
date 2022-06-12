@@ -19,7 +19,6 @@ const tempCurrentUser = {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
   constructor(private store: Store) {
     this.store.set<PtUser>('currentUser', tempCurrentUser);
   }

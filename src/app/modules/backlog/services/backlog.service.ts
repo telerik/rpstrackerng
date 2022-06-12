@@ -128,7 +128,7 @@ export class BacklogService {
             title: newTask.title,
             completed: false,
             dateCreated: new Date(),
-            dateModified: new Date()
+            dateModified: new Date(),
         };
         return new Promise<PtTask>((resolve, reject) => {
             this.repo.insertPtTask(
