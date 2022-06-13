@@ -55,23 +55,23 @@
             <img [src]="selectedAssignee?.avatar" class="li-avatar rounded" />
             <span>{{ itemForm.assigneeName }}</span>
 
-            <button class="btn btn-sm btn-outline-secondary" (click)="assigneePickerOpen(content)">Pick assignee</button>
+            <button class="btn btn-sm btn-outline-secondary" (click)="assigneePickerOpen('custom-modal-1')">Pick assignee</button>
         </div>
     </div>
 </form>
 
 
-<ng-template #content let-modal>
+<custom-modal id="custom-modal-1">
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Select Assignee</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <button type="button" class="close" aria-label="Close" (click)="closeModal('custom-modal-1')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
         <ul class="list-group list-group-flush">
             <li *ngFor="let user of users$ | async" class="list-group-item d-flex justify-content-between align-items-center"
-                (click)="modal.close(user)">
+                (click)="selectUser(user, 'custom-modal-1')">
                 <span>{{ user?.fullName }}</span>
                 <span class="badge ">
                     <img [src]="user?.avatar" class="li-avatar rounded mx-auto d-block" />
@@ -82,4 +82,4 @@
     <div class="modal-footer">
 
     </div>
-</ng-template>
+</custom-modal>

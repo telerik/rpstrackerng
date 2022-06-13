@@ -7,11 +7,12 @@ import { PriorityEnum } from 'src/app/core/models/domain/enums';
 import { ItemType, PT_ITEM_STATUSES, PT_ITEM_PRIORITIES } from 'src/app/core/constants';
 import { Observable } from 'rxjs';
 import { Store } from 'src/app/core/state/app-store';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ModalService } from 'src/app/shared/services/modal.service';
 
 @Component({
     selector: 'app-item-details',
     templateUrl: 'pt-item-details.component.html',
+    styleUrls: ['pt-item-details.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PtItemDetailsComponent implements OnInit {
@@ -35,7 +36,7 @@ export class PtItemDetailsComponent implements OnInit {
 
     constructor(
         private store: Store,
-        private modalService: NgbModal
+        private modalService: ModalService,
     ) { }
 
     public ngOnInit() {
@@ -55,17 +56,26 @@ export class PtItemDetailsComponent implements OnInit {
         this.notifyUpdateItem();
     }
 
-    public assigneePickerOpen(content: any) {
+    public assigneePickerOpen(id: string) {
         this.usersRequested.emit();
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-            if (typeof result === 'object' && this.itemForm) {
-                this.selectedAssignee = result;
-                this.itemForm.assigneeName = (result as PtUser).fullName;
-                this.notifyUpdateItem();
-            }
-        }, (reason) => {
+        this.openModal(id);
+    }
 
-        });
+    public selectUser(selectedUser: PtUser, id: string) {
+        if (typeof selectedUser === 'object' && this.itemForm) {
+            this.selectedAssignee = selectedUser;
+            this.itemForm.assigneeName = (selectedUser as PtUser).fullName;
+            this.notifyUpdateItem();
+        }
+        this.closeModal(id);
+    }
+
+    openModal(id: string) {
+        this.modalService.open(id);
+    }
+
+    closeModal(id: string) {
+        this.modalService.close(id);
     }
 
     private notifyUpdateItem() {

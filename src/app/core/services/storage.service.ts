@@ -5,18 +5,18 @@ export class StorageNsService {
 
     setItem<T>(key: string, value: T): void {
         const valueStr = JSON.stringify(value);
-        localStorage.setString(key, valueStr);
+        localStorage.setItem(key, valueStr);
     }
 
     getItem<T>(key: string): T | undefined {
-        const valueStr = localStorage.getString(key);
+        const valueStr = localStorage.getItem(key);
         if (valueStr) {
             return JSON.parse(valueStr);
         }
     }
 
     removeItem(key: string): void {
-        localStorage.remove(key);
+        localStorage.removeItem(key);
     }
 
     key(keyIndex: number): string {

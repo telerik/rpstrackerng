@@ -68,11 +68,6 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
             });
     }
 
-    public ngOnDestroy() {
-        if (this.sub) {
-            this.sub.unsubscribe();
-        }
-    }
 
     private getDateRange(months: number): DateRange {
         const now = new Date();
@@ -82,5 +77,11 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
             dateStart: start,
             dateEnd: now
         };
+    }
+    
+    public ngOnDestroy() {
+        if (this.sub) {
+            this.sub.unsubscribe();
+        }
     }
 }

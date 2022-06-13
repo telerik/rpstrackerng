@@ -4,7 +4,7 @@
         <app-preset-filter></app-preset-filter>
 
         <div class="btn-group mr-2">
-            <button type="button" (click)="onAddTap(content)" class="btn btn-sm btn-outline-secondary">Add</button>
+            <button type="button" (click)="onAddTap('custom-modal-1')" class="btn btn-sm btn-outline-secondary">Add</button>
         </div>
 
     </div>
@@ -12,11 +12,10 @@
 
 <app-list [items]="items$ | async" (listItemSelected)="selectListItem($event)"></app-list>
 
-
-<ng-template #content let-modal>
+<custom-modal id="custom-modal-1">
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Add New Item</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <button type="button" class="close" aria-label="Close" (click)="closeModal('custom-modal-1')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -48,8 +47,8 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Close</button>
-        <button type="button" class="btn btn-primary" [disabled]="!newItem.title" (click)="modal.close(newItem)">Save
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="closeModal('custom-modal-1')">Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="!newItem.title" (click)="onSaveTap(newItem,'custom-modal-1')">Save
             changes</button>
     </div>
-</ng-template>
+</custom-modal>
