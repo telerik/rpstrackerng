@@ -12,6 +12,7 @@ import { EMPTY_STRING } from 'src/app/core/helpers';
 import { ItemType } from 'src/app/core/constants';
 import { Store } from 'src/app/core/state/app-store';
 import { ModalService } from 'src/app/shared/services/modal.service';
+import { PriorityEnum } from 'src/app/core/models/domain/enums';
 
 @Component({
     selector: 'app-backlog',
@@ -56,6 +57,15 @@ export class BacklogPageComponent implements OnInit {
             description: EMPTY_STRING,
             type: 'PBI'
         };
+    }
+
+    public getIndicatorImage(item: PtItem): string {
+        return ItemType.imageResFromType(item.type);
+    }
+
+    public getPriorityClass(item: PtItem): string {
+        const indicatorClass = PriorityEnum.getIndicatorClass(item.priority);
+        return indicatorClass;
     }
 
     public selectListItem(item: PtItem) {
