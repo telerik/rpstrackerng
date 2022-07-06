@@ -12,6 +12,7 @@ import { EMPTY_STRING } from 'src/app/core/helpers';
 import { ItemType } from 'src/app/core/constants';
 import { Store } from 'src/app/core/state/app-store';
 import { ModalService } from 'src/app/shared/services/modal.service';
+import { PriorityEnum } from 'src/app/core/models/domain/enums';
 
 @Component({
     selector: 'app-backlog',
@@ -22,7 +23,7 @@ export class BacklogPageComponent implements OnInit {
 
     private itemsSub: Subscription | undefined;
     public items$: BehaviorSubject<PtItem[]> = new BehaviorSubject<PtItem[]>([]);
-
+    public currentPreset: PresetType = 'open';
     public itemTypesProvider = ItemType.List.map((t) => t.PtItemType);
     public newItem: PtNewItem | undefined;
 
@@ -41,7 +42,7 @@ export class BacklogPageComponent implements OnInit {
             }
             const reqPreset = params['preset'] as PresetType;
             if (reqPreset) {
-                this.itemsSub = this.backlogService.getItems(reqPreset)
+                this.itemsSub = this.backlogService.getItems(this.currentPreset)
                     .subscribe(items => {
                         this.items$.next(items);
                     });
@@ -56,6 +57,15 @@ export class BacklogPageComponent implements OnInit {
             description: EMPTY_STRING,
             type: 'PBI'
         };
+    }
+
+    public getIndicatorImage(item: PtItem): string {
+        return ItemType.imageResFromType(item.type);
+    }
+
+    public getPriorityClass(item: PtItem): string {
+        const indicatorClass = PriorityEnum.getIndicatorClass(item.priority);
+        return indicatorClass;
     }
 
     public selectListItem(item: PtItem) {
