@@ -25,5 +25,20 @@
     </div>
 
 
-    <app-active-issues [statusCounts]="statusCounts$ | async"></app-active-issues>
+    <div class="card">
+        <h3 class="card-header">Active Issues</h3>
+        <div class="card-block">
+
+            <app-active-issues [statusCounts]="statusCounts$ | async"></app-active-issues>
+        
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>All Issues</h3>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
 </div>
