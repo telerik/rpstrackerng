@@ -15,7 +15,7 @@ export class Store {
 
     public select<T>(name: StateKey): Observable<T> {
         return this.subj.pipe(
-            pluck<State, T>(name),
+            pluck<State, keyof State>(name),
             distinctUntilChanged<T>()
         );
     }
