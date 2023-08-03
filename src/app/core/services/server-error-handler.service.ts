@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class ServerErrorHandlerService {
     public handleHttpError(error: any) {
-        return Observable.throw(error.json().error || 'Server error');
+        return throwError(()=> new Error(error.json().error));
     }
 }
