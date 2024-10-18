@@ -2,7 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard.routing';
-import { SharedModule } from 'src/app/shared/shared.module';
+
 
 import { DashboardRepository } from './repositories/dashboard.repository';
 import { DashboardService } from './services/dashboard.service';
@@ -13,16 +13,13 @@ import { COMPONENTS } from './components';
 
 @NgModule({
     imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        SharedModule
-    ],
+    CommonModule,
+    DashboardRoutingModule,
+    ...PAGES,
+    ...COMPONENTS
+],
     exports: [
         ...PAGES
-    ],
-    declarations: [
-        ...PAGES,
-        ...COMPONENTS,
     ],
     providers: [
         DashboardRepository,

@@ -2,12 +2,15 @@ import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from 
 import { PtItem } from 'src/app/core/models/domain';
 import { ItemType } from 'src/app/core/constants';
 import { PriorityEnum } from 'src/app/core/models/domain/enums';
+import { NgFor, NgIf, DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-list',
     templateUrl: 'pt-list.component.html',
     styleUrls: ['pt-list.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, NgIf, DatePipe]
 })
 export class PtListComponent {
 

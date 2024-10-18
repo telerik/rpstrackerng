@@ -5,7 +5,8 @@ import { DetailScreenType } from 'src/app/shared/models/ui/types/detail-screens'
     selector: 'app-detail-section-selector',
     templateUrl: 'detail-section-selector.component.html',
     styleUrls: ['detail-section-selector.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class DetailSectionSelectorComponent {
 

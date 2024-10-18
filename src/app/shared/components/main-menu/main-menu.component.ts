@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-main-menu',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
     .logo {
         width: 100px;
     }
-    `]
+    `],
+    standalone: true,
+    imports: [RouterLink]
 })
 export class MainMenuComponent { }

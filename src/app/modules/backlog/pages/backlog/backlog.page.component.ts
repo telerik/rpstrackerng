@@ -13,11 +13,18 @@ import { ItemType } from 'src/app/core/constants';
 import { Store } from 'src/app/core/state/app-store';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { PriorityEnum } from 'src/app/core/models/domain/enums';
+import { NgFor, AsyncPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ModalComponent } from '../../../../shared/components/modal-dialog/modal-dialog.component';
+import { PtListComponent } from '../../components/backlog/pt-list.component';
+import { PresetFilterComponent } from '../../../../shared/components/preset-filter/preset-filter.component';
 
 @Component({
     selector: 'app-backlog',
     templateUrl: 'backlog.page.component.html',
-    styleUrls: ['backlog.page.component.css']
+    styleUrls: ['backlog.page.component.css'],
+    standalone: true,
+    imports: [PresetFilterComponent, PtListComponent, ModalComponent, FormsModule, NgFor, AsyncPipe]
 })
 export class BacklogPageComponent implements OnInit {
 

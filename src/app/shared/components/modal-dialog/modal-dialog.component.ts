@@ -5,11 +5,12 @@ import { ModalService } from '../../services/modal.service';
 
 
 
-@Component({ 
-    selector: 'custom-modal', 
-    templateUrl: 'modal-dialog.component.html', 
+@Component({
+    selector: 'custom-modal',
+    templateUrl: 'modal-dialog.component.html',
     styleUrls: ['modal-dialog.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: true
 })
 export class ModalComponent implements OnInit, OnDestroy {
     @Input() id: string;

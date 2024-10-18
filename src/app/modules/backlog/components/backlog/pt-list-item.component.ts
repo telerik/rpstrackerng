@@ -4,7 +4,8 @@ import { PtItem } from 'src/app/core/models/domain';
 @Component({
     selector: 'app-list-item',
     templateUrl: 'pt-list-item.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class PtListItemComponent {
 

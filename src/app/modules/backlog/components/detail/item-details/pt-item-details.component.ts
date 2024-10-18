@@ -8,12 +8,17 @@ import { ItemType, PT_ITEM_STATUSES, PT_ITEM_PRIORITIES } from 'src/app/core/con
 import { Observable } from 'rxjs';
 import { Store } from 'src/app/core/state/app-store';
 import { ModalService } from 'src/app/shared/services/modal.service';
+import { ModalComponent } from '../../../../../shared/components/modal-dialog/modal-dialog.component';
+import { NgFor, AsyncPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-item-details',
     templateUrl: 'pt-item-details.component.html',
     styleUrls: ['pt-item-details.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FormsModule, NgFor, ModalComponent, AsyncPipe]
 })
 export class PtItemDetailsComponent implements OnInit {
 

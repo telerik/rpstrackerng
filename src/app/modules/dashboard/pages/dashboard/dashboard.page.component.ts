@@ -6,6 +6,8 @@ import { DashboardService } from '../../services/dashboard.service';
 import { Store } from 'src/app/core/state/app-store';
 import { StatusCounts } from '../../models';
 import { DashboardFilter } from 'src/app/shared/models/dto/stats/dashboard-filter';
+import { ActiveIssuesComponent } from '../../components/active-issues/active-issues.component';
+import { NgIf, AsyncPipe, DatePipe } from '@angular/common';
 
 
 interface DateRange {
@@ -16,7 +18,9 @@ interface DateRange {
 @Component({
     selector: 'app-dashboard',
     templateUrl: 'dashboard.page.component.html',
-    styleUrls: ['dashboard.page.component.css']
+    styleUrls: ['dashboard.page.component.css'],
+    standalone: true,
+    imports: [NgIf, ActiveIssuesComponent, AsyncPipe, DatePipe]
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
 

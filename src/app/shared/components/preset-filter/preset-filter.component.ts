@@ -4,7 +4,8 @@ import { PresetType } from 'src/app/core/models/domain/types';
 
 @Component({
     selector: 'app-preset-filter',
-    templateUrl: 'preset-filter.component.html'
+    templateUrl: 'preset-filter.component.html',
+    standalone: true
 })
 export class PresetFilterComponent {
 

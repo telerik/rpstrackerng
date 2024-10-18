@@ -6,20 +6,17 @@ import { BacklogService } from './services/backlog.service';
 import { BacklogRepository } from './repositories/backlog.repository';
 import { PAGES } from './pages';
 import { COMPONENTS } from './components';
-import { SharedModule } from 'src/app/shared/shared.module';
+
 
 @NgModule({
     imports: [
-        CommonModule,
-        BacklogRoutingModule,
-        SharedModule
-    ],
+    CommonModule,
+    BacklogRoutingModule,
+    ...PAGES,
+    ...COMPONENTS
+],
     exports: [
         ...PAGES
-    ],
-    declarations: [
-        ...PAGES,
-        ...COMPONENTS,
     ],
     providers: [
         BacklogRepository,

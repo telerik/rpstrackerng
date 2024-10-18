@@ -9,10 +9,17 @@ import { BacklogService } from '../../services/backlog.service';
 import { PtUserService, NavigationService } from 'src/app/core/services';
 import { PtNewTask, PtTaskUpdate, PtNewComment } from 'src/app/shared/models/dto';
 import { Store } from 'src/app/core/state/app-store';
+import { PtItemChitchatComponent } from '../../components/detail/item-chitchat/pt-item-chitchat.component';
+import { PtItemTasksComponent } from '../../components/detail/item-tasks/pt-item-tasks.component';
+import { PtItemDetailsComponent } from '../../components/detail/item-details/pt-item-details.component';
+import { DetailSectionSelectorComponent } from '../../components/detail/detail-section-selector/detail-section-selector.component';
+import { NgIf, NgSwitch, NgSwitchCase, AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-backlog-detail-page',
-    templateUrl: 'detail.page.component.html'
+    templateUrl: 'detail.page.component.html',
+    standalone: true,
+    imports: [NgIf, DetailSectionSelectorComponent, NgSwitch, NgSwitchCase, PtItemDetailsComponent, PtItemTasksComponent, PtItemChitchatComponent, AsyncPipe]
 })
 export class DetailPageComponent implements OnInit, OnDestroy {
 
