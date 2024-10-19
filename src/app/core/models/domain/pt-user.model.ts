@@ -1,6 +1,6 @@
 import { PtObjectBase } from './';
 
-export interface PtUser extends PtObjectBase {
+export type PtUser = PtObjectBase & {
     fullName: string;
     avatar: string;
-}
+  };

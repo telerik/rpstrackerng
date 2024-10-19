@@ -11,7 +11,8 @@ import { PriorityEnum, StatusEnum } from '../../../core/models/domain/enums';
 import { getUserAvatarUrl } from '../../../core/helpers/user-avatar-helper';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { PresetType } from 'src/app/core/models/domain/types';
+import { PresetType } from '../../../core/models/domain/types';
+
 
 @Injectable()
 export class BacklogService {
@@ -169,6 +170,7 @@ export class BacklogService {
                         if (t.id !== task.id) {
                             return t;
                         }
+                        return null;
                     });
                     currentItem.tasks = updatedTasks;
                     resolve(ok);

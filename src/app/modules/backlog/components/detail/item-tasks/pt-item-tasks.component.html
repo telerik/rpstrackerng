@@ -17,7 +17,7 @@
                     [name]="'checked' + task.id" />
             </div>
         </div>
-        <input [(ngModel)]="task.title" (ngModelChange)="taskTitleChange(task, $event)" (blur)="taskBlurred(task, $event)"
+        <input [(ngModel)]="task.title" (ngModelChange)="taskTitleChange(task, $event)" (blur)="taskBlurred(task)"
             type="text" class="form-control" aria-label="Text input with checkbox" [name]="'tasktitle' + task.id" />
 
         <div class="input-group-append">

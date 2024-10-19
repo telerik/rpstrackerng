@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root', // Makes it available globally
+})
 export class NavigationService {
     constructor(private router: Router, private location: Location) { }
 

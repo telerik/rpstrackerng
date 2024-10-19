@@ -1,32 +1,33 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 
-import { PtItem, PtUser } from 'src/app/core/models/domain';
-import { PtItemDetailsEditFormModel, ptItemToFormModel } from 'src/app/shared/models/forms';
-import { PtItemType } from 'src/app/core/models/domain/types';
-import { PriorityEnum } from 'src/app/core/models/domain/enums';
-import { ItemType, PT_ITEM_STATUSES, PT_ITEM_PRIORITIES } from 'src/app/core/constants';
-import { Observable } from 'rxjs';
-import { Store } from 'src/app/core/state/app-store';
-import { ModalService } from 'src/app/shared/services/modal.service';
+
 import { ModalComponent } from '../../../../../shared/components/modal-dialog/modal-dialog.component';
 import { NgFor, AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { ItemType, PT_ITEM_STATUSES, PT_ITEM_PRIORITIES } from '../../../../../core/constants';
+import { PtItem, PtUser } from '../../../../../core/models/domain';
+import { PriorityEnum } from '../../../../../core/models/domain/enums';
+import { PtItemType } from '../../../../../core/models/domain/types';
+import { Store } from '../../../../../core/state/app-store';
+import { PtItemDetailsEditFormModel, ptItemToFormModel } from '../../../../../shared/models/forms';
+import { ModalService } from '../../../../../shared/services/modal.service';
 
 @Component({
-    selector: 'app-item-details',
-    templateUrl: 'pt-item-details.component.html',
-    styleUrls: ['pt-item-details.component.css'],
+    selector: 'app-item-form',
+    templateUrl: 'pt-item-form.component.html',
+    styleUrls: ['pt-item-form.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [FormsModule, NgFor, ModalComponent, AsyncPipe]
 })
-export class PtItemDetailsComponent implements OnInit {
+export class PtItemFormComponent implements OnInit {
 
     @Input() item: PtItem | undefined;
     @Output() itemSaved = new EventEmitter<PtItem>();
     @Output() usersRequested = new EventEmitter<string>();
 
-    public users$: Observable<PtUser[]> = this.store.select<PtUser[]>('users');
+    public users$: Observable<PtUser[]> | undefined;
 
     private selectedTypeValue: PtItemType | undefined;
     private selectedPriorityValue: PriorityEnum | undefined;
@@ -42,7 +43,9 @@ export class PtItemDetailsComponent implements OnInit {
     constructor(
         private store: Store,
         private modalService: ModalService,
-    ) { }
+    ) {
+        this.users$ = this.store.select<PtUser[]>('users');
+    }
 
     public ngOnInit() {
         if (this.item) {

@@ -1,8 +1,9 @@
 import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { PtItem } from 'src/app/core/models/domain';
-import { ItemType } from 'src/app/core/constants';
-import { PriorityEnum } from 'src/app/core/models/domain/enums';
+
 import { NgFor, NgIf, DatePipe } from '@angular/common';
+import { ItemType } from '../../../../core/constants';
+import { PtItem } from '../../../../core/models/domain';
+import { PriorityEnum } from '../../../../core/models/domain/enums';
 
 @Component({
     selector: 'app-list',

@@ -4,7 +4,9 @@ import { distinctUntilChanged, pluck } from 'rxjs/operators';
 import { State, INITIAL_STATE, StateKey } from './app-state';
 import { Injectable } from "@angular/core";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root', // Makes it available globally
+})
 export class Store {
 
     private subj = new BehaviorSubject<State>(INITIAL_STATE);

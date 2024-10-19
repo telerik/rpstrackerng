@@ -1,4 +1,4 @@
-export interface StatusCounts {
+export type StatusCounts = {
     activeItemsCount: number;
     closeRate: number;
     closedItemsCount: number;

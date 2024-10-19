@@ -1,4 +1,4 @@
-export interface PtLoginModel {
+export type PtLoginModel = {
     username: string;
     password: string;
 }

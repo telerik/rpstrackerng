@@ -3,34 +3,37 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription, BehaviorSubject, Observable } from 'rxjs';
 
-import { DetailScreenType } from 'src/app/shared/models/ui/types/detail-screens';
-import { PtItem, PtTask, PtComment, PtUser } from 'src/app/core/models/domain';
-import { BacklogService } from '../../services/backlog.service';
-import { PtUserService, NavigationService } from 'src/app/core/services';
-import { PtNewTask, PtTaskUpdate, PtNewComment } from 'src/app/shared/models/dto';
-import { Store } from 'src/app/core/state/app-store';
+
 import { PtItemChitchatComponent } from '../../components/detail/item-chitchat/pt-item-chitchat.component';
 import { PtItemTasksComponent } from '../../components/detail/item-tasks/pt-item-tasks.component';
-import { PtItemDetailsComponent } from '../../components/detail/item-details/pt-item-details.component';
+import { PtItemFormComponent } from '../../components/detail/item-form/pt-item-form.component';
 import { DetailSectionSelectorComponent } from '../../components/detail/detail-section-selector/detail-section-selector.component';
 import { NgIf, NgSwitch, NgSwitchCase, AsyncPipe } from '@angular/common';
+import { PtItem, PtTask, PtComment, PtUser } from '../../../../core/models/domain';
+import { PtUserService, NavigationService } from '../../../../core/services';
+import { Store } from '../../../../core/state/app-store';
+import { PtNewTask, PtTaskUpdate, PtNewComment } from '../../../../shared/models/dto';
+import { DetailScreenType } from '../../../../shared/models/ui/types/detail-screens';
+import { BacklogService } from '../../services/backlog.service';
+import { BacklogRepository } from '../../repositories/backlog.repository';
 
 @Component({
     selector: 'app-backlog-detail-page',
     templateUrl: 'detail.page.component.html',
     standalone: true,
-    imports: [NgIf, DetailSectionSelectorComponent, NgSwitch, NgSwitchCase, PtItemDetailsComponent, PtItemTasksComponent, PtItemChitchatComponent, AsyncPipe]
+    imports: [NgIf, DetailSectionSelectorComponent, NgSwitch, NgSwitchCase, PtItemFormComponent, PtItemTasksComponent, PtItemChitchatComponent, AsyncPipe],
+    providers: [BacklogService, BacklogRepository]
 })
 export class DetailPageComponent implements OnInit, OnDestroy {
 
     private itemId = 0;
     private currentItemSub: Subscription | undefined;
-    public selectedDetailsScreen: DetailScreenType = 'details';
+    public selectedDetailsScreen: DetailScreenType = 'form';
 
     public item: PtItem | undefined;
     public tasks$: BehaviorSubject<PtTask[]> = new BehaviorSubject<PtTask[]>([]);
     public comments$: BehaviorSubject<PtComment[]> = new BehaviorSubject<PtComment[]>([]);
-    public currentUser$: Observable<PtUser> = this.store.select<PtUser>('currentUser');
+    public currentUser$: Observable<PtUser>;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -38,7 +41,9 @@ export class DetailPageComponent implements OnInit, OnDestroy {
         private ptUserService: PtUserService,
         private navigationService: NavigationService,
         private store: Store
-    ) { }
+    ) {
+        this.currentUser$ = this.store.select<PtUser>('currentUser');
+    }
 
     public ngOnInit() {
         this.itemId = parseInt(this.activatedRoute.snapshot.params['id'], undefined);
@@ -51,10 +56,10 @@ export class DetailPageComponent implements OnInit, OnDestroy {
             });
 
         const screen = this.activatedRoute.snapshot.params['screen'] as DetailScreenType;
-        if (screen === 'details' || screen === 'tasks' || screen === 'chitchat') {
+        if (screen === 'form' || screen === 'tasks' || screen === 'chitchat') {
             this.selectedDetailsScreen = screen;
         } else {
-            this.navigationService.navigate([`/detail/${this.itemId}/details`]);
+            this.navigationService.navigate([`/detail/${this.itemId}`]);
         }
     }
 
@@ -84,6 +89,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
                             if (task.id !== taskUpdate.task.id) {
                                 return task;
                             }
+                            return null;
                         });
                         this.tasks$.next(newTasks);
                     }

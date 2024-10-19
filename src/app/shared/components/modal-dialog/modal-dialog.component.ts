@@ -13,7 +13,7 @@ import { ModalService } from '../../services/modal.service';
     standalone: true
 })
 export class ModalComponent implements OnInit, OnDestroy {
-    @Input() id: string;
+    @Input() id: string | undefined;
     private element: any;
 
     constructor(private modalService: ModalService, private el: ElementRef) {
@@ -28,7 +28,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
         document.body.appendChild(this.element);
 
-        this.element.addEventListener('click', el => {
+        this.element.addEventListener('click', (el: { target: { className: string; }; }) => {
             if (el.target.className === 'custom-modal') {
                 this.close();
             }
@@ -38,7 +38,9 @@ export class ModalComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.modalService.remove(this.id);
+        if (this.id) {
+            this.modalService.remove(this.id);
+        }
         this.element.remove();
     }
 

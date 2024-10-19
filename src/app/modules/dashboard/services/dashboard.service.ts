@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 
 import { DashboardRepository } from '../repositories/dashboard.repository';
 import { TypeCounts, PriorityCounts, StatusCounts } from '../models';
-import { DashboardFilter } from 'src/app/shared/models/dto/stats/dashboard-filter';
+import { DashboardFilter } from '../../../shared/models/dto/stats/dashboard-filter';
+
 
 @Injectable()
 export class DashboardService {

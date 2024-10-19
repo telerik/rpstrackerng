@@ -27,6 +27,7 @@ export class PtItemChitchatComponent {
         if (this.currentUser) {
             return this.currentUser.avatar;
         }
+        return EMPTY_STRING;;
     }
 
     public onAddTapped() {

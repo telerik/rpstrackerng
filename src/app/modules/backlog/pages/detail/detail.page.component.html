@@ -8,8 +8,8 @@
 
 
     <div [ngSwitch]="selectedDetailsScreen">
-        <ng-template [ngSwitchCase]="'details'">
-            <app-item-details [item]="item" (itemSaved)="onItemSaved($event)" (usersRequested)="onUsersRequested($event)"></app-item-details>
+        <ng-template [ngSwitchCase]="'form'">
+            <app-item-form [item]="item" (itemSaved)="onItemSaved($event)" (usersRequested)="onUsersRequested($event)"></app-item-form>
         </ng-template>
         <ng-template [ngSwitchCase]="'tasks'">
             <app-item-tasks [tasks$]="tasks$" (addNewTask)="onAddNewTask($event)" (updateTask)="onUpdateTask($event)"></app-item-tasks>

@@ -3,28 +3,31 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription, BehaviorSubject } from 'rxjs';
 
-import { NavigationService } from 'src/app/core/services';
-import { BacklogService } from '../../services/backlog.service';
-import { PtItem } from 'src/app/core/models/domain';
-import { PresetType } from 'src/app/core/models/domain/types';
-import { PtNewItem } from 'src/app/shared/models/dto';
-import { EMPTY_STRING } from 'src/app/core/helpers';
-import { ItemType } from 'src/app/core/constants';
-import { Store } from 'src/app/core/state/app-store';
-import { ModalService } from 'src/app/shared/services/modal.service';
-import { PriorityEnum } from 'src/app/core/models/domain/enums';
+
 import { NgFor, AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../../../shared/components/modal-dialog/modal-dialog.component';
 import { PtListComponent } from '../../components/backlog/pt-list.component';
 import { PresetFilterComponent } from '../../../../shared/components/preset-filter/preset-filter.component';
+import { ItemType } from '../../../../core/constants';
+import { EMPTY_STRING } from '../../../../core/helpers';
+import { PtItem } from '../../../../core/models/domain';
+import { PriorityEnum } from '../../../../core/models/domain/enums';
+import { PresetType } from '../../../../core/models/domain/types';
+import { NavigationService } from '../../../../core/services';
+import { Store } from '../../../../core/state/app-store';
+import { PtNewItem } from '../../../../shared/models/dto';
+import { ModalService } from '../../../../shared/services/modal.service';
+import { BacklogService } from '../../services/backlog.service';
+import { BacklogRepository } from '../../repositories/backlog.repository';
 
 @Component({
     selector: 'app-backlog',
     templateUrl: 'backlog.page.component.html',
     styleUrls: ['backlog.page.component.css'],
     standalone: true,
-    imports: [PresetFilterComponent, PtListComponent, ModalComponent, FormsModule, NgFor, AsyncPipe]
+    imports: [PresetFilterComponent, PtListComponent, ModalComponent, FormsModule, NgFor, AsyncPipe],
+    providers: [BacklogService, BacklogRepository]
 })
 export class BacklogPageComponent implements OnInit {
 

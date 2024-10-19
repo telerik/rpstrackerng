@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 import { environment as env } from '../../../../environments/environment';
 
 import { StatusCounts, PriorityCounts, TypeCounts } from '../models';
-import { DashboardFilter } from 'src/app/shared/models/dto/stats/dashboard-filter';
+import { DashboardFilter } from '../../../shared/models/dto/stats/dashboard-filter';
+
 
 @Injectable()
 export class DashboardRepository {

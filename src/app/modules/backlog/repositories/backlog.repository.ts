@@ -4,8 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../../environments/environment';
 
 import { PtTask, PtItem, PtComment } from '../../../core/models/domain';
-import { PresetType } from 'src/app/core/models/domain/types';
+
 import { Observable } from 'rxjs';
+import { PresetType } from '../../../core/models/domain/types';
 
 @Injectable()
 export class BacklogRepository {

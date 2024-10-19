@@ -1,4 +1,4 @@
-export interface TypeCounts {
+export type TypeCounts = {
     critical: number;
     high: number;
     low: number;

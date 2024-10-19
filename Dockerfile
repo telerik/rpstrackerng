@@ -16,6 +16,6 @@ RUN npm run build -- -c production
 
 FROM nginx:stable
 
-COPY --from=frontend /var/tmp/dist/rpstrackerng14 /usr/share/nginx/html
+COPY --from=frontend /var/tmp/dist/rpstrackerng /usr/share/nginx/html
 
 EXPOSE 80

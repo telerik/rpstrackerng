@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root', // Makes it available globally
+})
 export class StorageNsService {
 
     setItem<T>(key: string, value: T): void {
@@ -13,6 +15,7 @@ export class StorageNsService {
         if (valueStr) {
             return JSON.parse(valueStr);
         }
+        return undefined;
     }
 
     removeItem(key: string): void {
