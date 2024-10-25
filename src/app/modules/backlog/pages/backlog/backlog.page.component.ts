@@ -52,13 +52,18 @@ export class BacklogPageComponent implements OnInit {
             }
             const reqPreset = params['preset'] as PresetType;
             if (reqPreset) {
-                this.itemsSub = this.backlogService.getItems(this.currentPreset)
-                    .subscribe(items => {
-                        this.items$.next(items);
-                    });
+                this.currentPreset = reqPreset;
+                this.refresh();
             }
         });
         this.resetModalFields();
+    }
+
+    private refresh() {
+        this.itemsSub = this.backlogService.getItems(this.currentPreset)
+            .subscribe((items: PtItem[]) => {
+                this.items$.next(items);
+            });
     }
 
     private resetModalFields() {

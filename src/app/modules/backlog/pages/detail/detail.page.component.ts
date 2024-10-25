@@ -46,7 +46,10 @@ export class DetailPageComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit() {
-        this.itemId = parseInt(this.activatedRoute.snapshot.params['id'], undefined);
+        const id = this.activatedRoute.snapshot.paramMap.get('id');
+        const screen = this.activatedRoute.snapshot.paramMap.get('screen') as DetailScreenType;
+
+        this.itemId = parseInt(id, undefined);
 
         this.currentItemSub = this.backlogService.getPtItem(this.itemId)
             .subscribe(item => {
@@ -55,17 +58,21 @@ export class DetailPageComponent implements OnInit, OnDestroy {
                 this.comments$.next(item.comments);
             });
 
-        const screen = this.activatedRoute.snapshot.params['screen'] as DetailScreenType;
-        if (screen === 'form' || screen === 'tasks' || screen === 'chitchat') {
-            this.selectedDetailsScreen = screen;
+        if (screen) {
+            this.selectedDetailsScreen = screen; // Load the appropriate screen
         } else {
-            this.navigationService.navigate([`/detail/${this.itemId}`]);
+            this.selectedDetailsScreen = 'form'; // Default to 'form' if no screen is provided
         }
     }
 
-    public onScreenSelected(screen: DetailScreenType) {
+    public onScreenSelected(screen: DetailScreenType): void {
         this.selectedDetailsScreen = screen;
-        this.navigationService.navigate([`/detail/${this.itemId}/${screen}`]);
+    
+        if (screen === 'form') {
+          this.navigationService.navigate([`/detail/${this.itemId}`]);
+        } else {
+          this.navigationService.navigate([`/detail/${this.itemId}/${screen}`]);
+        }
     }
 
     public onUsersRequested(name: string) {

@@ -1,5 +1,123 @@
 @import 'bootstrap/scss/bootstrap'; // Bootstrap 5.x path
 
+
+
+
+html, body {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+  font-weight: 700;  
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500; 
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/fonts/Roboto/Roboto-Light.ttf') format('truetype');
+  font-weight: 300;  
+  font-style: normal;
+}
+
+.nav-item > .app-bar-nav-link {
+  text-align: center;
+  color: #068597 !important;
+  font-size: 16px;
+  font-family: Roboto;
+  font-weight: 500;
+  line-height: 24px;
+  word-wrap: break-word;
+}
+
+.li-avatar {
+  background-color: #eeeeee;
+  width: 40px;
+  height: 40px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+.li-estimate {
+  font-size: 10px;
+  font-weight: bold;
+  color: #555a97;
+}
+
+.li-date {
+  font-size: 12px;
+  color: #555a97;
+  margin-left: 10px;
+}
+
+.indicator-pbi {
+  background-color: #527FD7;
+}
+
+.indicator-bug {
+  background-color: #D75252;
+}
+
+.indicator-chore {
+  background-color: #666666;
+}
+
+.indicator-impediment {
+  background-color: #D7C152;
+}
+
+.priority-critical {
+  color: #fff;
+  background-color: #820101;
+}
+
+.priority-high {
+  color: #fff;
+  background-color: #b27100;
+}
+
+.priority-medium {
+  color: #fff;
+  background-color: #0c6d00;
+}
+
+.priority-low {
+  color: #fff;
+  background-color: #002b6d;
+}
+
+.modal-body {
+  max-height: 400px;
+  overflow: scroll;
+}
+
+.rps-text-area {
+  width: 100%;
+  height: 60px;
+}
+
+
   
   .feather {
     width: 16px;
@@ -83,8 +201,7 @@
     padding-top: .75rem;
     padding-bottom: .75rem;
     font-size: 1rem;
-    background-color: rgba(0, 0, 0, .25);
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+
   }
   
   .navbar .form-control {

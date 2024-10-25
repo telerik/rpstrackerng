@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { StatusCounts } from '../../models';
 import { NgIf, DecimalPipe } from '@angular/common';
 
@@ -7,7 +7,7 @@ import { NgIf, DecimalPipe } from '@angular/common';
     templateUrl: 'active-issues.component.html',
     styleUrls: ['active-issues.component.css'],
     standalone: true,
-    imports: [NgIf, DecimalPipe]
+    imports: [NgIf, DecimalPipe],
 })
 export class ActiveIssuesComponent {
 

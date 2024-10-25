@@ -1,13 +1,17 @@
-<app-main-menu></app-main-menu>
+<div class="page">
+    <div class="Backlog" style="width: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
 
-<div class="container-fluid">
-    <div class="row">
-        <app-side-menu></app-side-menu>
+        <app-bar class="container-fluid" style="background: rgba(3.84, 86.84, 98.16, 0.06); box-shadow: 0px 6px 13px rgba(0, 0, 0, 0.12);"></app-bar>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <router-outlet></router-outlet>
-        </main>
+        <div class="Frame10" style="width: 1440px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+
+            <app-main-menu></app-main-menu>
+
+            <div class="Frame9" style="flex: 1 1 0; align-self: stretch; padding-bottom: 20px; padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: flex-start; align-items: normal; gap: 24px; display: inline-flex">
+
+                <router-outlet></router-outlet>
+
+            </div>
+        </div>
     </div>
 </div>
-
-<footer></footer>
