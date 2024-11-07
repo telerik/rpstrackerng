@@ -64,9 +64,7 @@
 <custom-modal id="custom-modal-1">
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Select Assignee</h4>
-        <button type="button" class="close" aria-label="Close" (click)="closeModal('custom-modal-1')">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal('custom-modal-1')"></button>
     </div>
     <div class="modal-body">
         <ul class="list-group list-group-flush">
