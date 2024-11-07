@@ -26,7 +26,7 @@ export class PtItemTaskScheduleComponent implements OnInit {
 
     public displayDate = new Date();
     public startTime = '07:00';
-    public events: SchedulerEvent[] = [];
+    public schedulerEvents: SchedulerEvent[] = [];
     public formGroup: FormGroup | undefined;
 
     constructor(private formBuilder: FormBuilder) {
@@ -35,7 +35,7 @@ export class PtItemTaskScheduleComponent implements OnInit {
 
     public ngOnInit() {
         this.tasks$.subscribe(tasks => {
-            const sevents = tasks.filter(t => t.dateStart && t.dateEnd).map(t => {
+            const events = tasks.filter(t => t.dateStart && t.dateEnd).map(t => {
                 const evt: SchedulerEvent = {
                     id: t.id,
                     title: t.title ? t.title : '',
@@ -46,9 +46,9 @@ export class PtItemTaskScheduleComponent implements OnInit {
                 return evt;
             });
 
-            if (sevents.length > 0) {
-                this.events = sevents;
-                const minDate = new Date(Math.min.apply(null, sevents.map((e) => new Date(e.start).valueOf())));
+            if (events.length > 0) {
+                this.schedulerEvents = events;
+                const minDate = new Date(Math.min.apply(null, events.map((e) => new Date(e.start).valueOf())));
                 this.displayDate = minDate;
             }
         });
@@ -73,8 +73,8 @@ export class PtItemTaskScheduleComponent implements OnInit {
     }
 
     public getNextId(): number {
-        const len = this.events.length;
-        return (len === 0) ? 1 : this.events[this.events.length - 1].id + 1;
+        const len = this.schedulerEvents.length;
+        return (len === 0) ? 1 : this.schedulerEvents[this.schedulerEvents.length - 1].id + 1;
     }
 
     public onSave(args: SaveEvent) {
