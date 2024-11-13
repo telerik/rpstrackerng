@@ -24,6 +24,7 @@
     ]
   },
   "angularCompilerOptions": {
+    "_enabledBlockTypes": ["if", "switch", "for"],
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output
 
 
 import { ModalComponent } from '../../../../../shared/components/modal-dialog/modal-dialog.component';
-import { NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ItemType, PT_ITEM_STATUSES, PT_ITEM_PRIORITIES } from '../../../../../core/constants';
@@ -19,7 +19,7 @@ import { ModalService } from '../../../../../shared/services/modal.service';
     styleUrls: ['pt-item-form.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [FormsModule, NgFor, ModalComponent, AsyncPipe]
+    imports: [FormsModule, ModalComponent, AsyncPipe]
 })
 export class PtItemFormComponent implements OnInit {
 

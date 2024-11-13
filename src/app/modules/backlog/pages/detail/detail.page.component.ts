@@ -1,14 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 import { Subscription, BehaviorSubject, Observable } from 'rxjs';
-
 
 import { PtItemChitchatComponent } from '../../components/detail/item-chitchat/pt-item-chitchat.component';
 import { PtItemTasksComponent } from '../../components/detail/item-tasks/pt-item-tasks.component';
 import { PtItemFormComponent } from '../../components/detail/item-form/pt-item-form.component';
 import { DetailSectionSelectorComponent } from '../../components/detail/detail-section-selector/detail-section-selector.component';
-import { NgIf, NgSwitch, NgSwitchCase, AsyncPipe } from '@angular/common';
 import { PtItem, PtTask, PtComment, PtUser } from '../../../../core/models/domain';
 import { PtUserService, NavigationService } from '../../../../core/services';
 import { Store } from '../../../../core/state/app-store';
@@ -21,7 +20,7 @@ import { BacklogRepository } from '../../repositories/backlog.repository';
     selector: 'app-backlog-detail-page',
     templateUrl: 'detail.page.component.html',
     standalone: true,
-    imports: [NgIf, DetailSectionSelectorComponent, NgSwitch, NgSwitchCase, PtItemFormComponent, PtItemTasksComponent, PtItemChitchatComponent, AsyncPipe],
+    imports: [DetailSectionSelectorComponent, PtItemFormComponent, PtItemTasksComponent, PtItemChitchatComponent, AsyncPipe],
     providers: [BacklogService, BacklogRepository]
 })
 export class DetailPageComponent implements OnInit, OnDestroy {

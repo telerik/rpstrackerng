@@ -13,38 +13,40 @@
             <div style="width: 1123.19px; height: 1px; position: relative; background: rgba(33, 37, 41, 0.13)"></div>
         </div>
 
-        <div *ngFor="let task of tasks$ | async" class="row mb-3">
+        @for (task of tasks$ | async; track task.id) {
+            <div class="row mb-3">
 
-            <div class="col">
-                <div class="input-group">
-
-                    <div class="input-group-text">
-                        <input type="checkbox" [checked]="task.completed" (change)="toggleTapped(task)" aria-label="Checkbox for following text input"
-                        [name]="'checked' + task.id" />
-                    </div>
-
-                    <input [(ngModel)]="task.title" (ngModelChange)="taskTitleChange(task, $event)" (blur)="taskBlurred(task)"
-                        type="text" class="form-control" aria-label="Text input with checkbox" [name]="'tasktitle' + task.id" />
-
-
-                </div>
-            </div>
-
-            <div class="col-1">
-                <div style="border-radius: 6px; justify-content: flex-start; align-items: flex-start; display: flex">
-                    <div style="padding: 10px; border-radius: 8px; border: 1px rgba(255, 255, 255, 0) solid; justify-content: center; align-items: center; gap: 8px; display: flex">
-                        <div style="width: 16px; height: 16px; justify-content: center; align-items: center; display: flex">
-                            <div style="width: 16px; height: 16px; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                                <span class="telerik-blazor k-button-icon k-icon k-svg-icon k-svg-i-calendar" style="color:red; cursor: pointer;" (click)="taskDelete(task)">
-                                    <svg  viewBox="0 0 512 512"><path d="M416 96h-96V64c0-17.6-14.4-32-32-32h-96c-17.6 0-32 14.4-32 32v32H64v64h32v288c0 17.6 14.4 32 32 32h224c17.6 0 32-14.4 32-32V160h32zM192 64h95.9l.1.1V96h-96c.1-.1.1-32.1 0-32m160 384H128.1l-.1-.1V160h32v256h32V160h32v256h32V160h32v256h32V160h32z"></path></svg>
-                                </span>
-                            </div>
+                <div class="col">
+                    <div class="input-group">
+    
+                        <div class="input-group-text">
+                            <input type="checkbox" [checked]="task.completed" (change)="toggleTapped(task)" aria-label="Checkbox for following text input"
+                            [name]="'checked' + task.id" />
                         </div>
-                    </div> 
+    
+                        <input [(ngModel)]="task.title" (ngModelChange)="taskTitleChange(task, $event)" (blur)="taskBlurred(task)"
+                            type="text" class="form-control" aria-label="Text input with checkbox" [name]="'tasktitle' + task.id" />
+    
+    
+                    </div>
                 </div>
+    
+                <div class="col-1">
+                    <div style="border-radius: 6px; justify-content: flex-start; align-items: flex-start; display: flex">
+                        <div style="padding: 10px; border-radius: 8px; border: 1px rgba(255, 255, 255, 0) solid; justify-content: center; align-items: center; gap: 8px; display: flex">
+                            <div style="width: 16px; height: 16px; justify-content: center; align-items: center; display: flex">
+                                <div style="width: 16px; height: 16px; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                                    <span class="telerik-blazor k-button-icon k-icon k-svg-icon k-svg-i-calendar" style="color:red; cursor: pointer;" (click)="taskDelete(task)">
+                                        <svg  viewBox="0 0 512 512"><path d="M416 96h-96V64c0-17.6-14.4-32-32-32h-96c-17.6 0-32 14.4-32 32v32H64v64h32v288c0 17.6 14.4 32 32 32h224c17.6 0 32-14.4 32-32V160h32zM192 64h95.9l.1.1V96h-96c.1-.1.1-32.1 0-32m160 384H128.1l-.1-.1V160h32v256h32V160h32v256h32V160h32v256h32V160h32z"></path></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+    
             </div>
-
-        </div>
+        }
     
     </div>
 </div>

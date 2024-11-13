@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 
-import { NgFor, NgIf, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { ItemType } from '../../../../core/constants';
 import { PtItem } from '../../../../core/models/domain';
 import { PriorityEnum } from '../../../../core/models/domain/enums';
@@ -11,7 +11,7 @@ import { PriorityEnum } from '../../../../core/models/domain/enums';
     styleUrls: ['pt-list.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor, NgIf, DatePipe]
+    imports: [DatePipe]
 })
 export class PtListComponent {
 

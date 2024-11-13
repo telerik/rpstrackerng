@@ -1,11 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { Subscription, BehaviorSubject } from 'rxjs';
 
-
-import { NgFor, AsyncPipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../../../shared/components/modal-dialog/modal-dialog.component';
 import { PtListComponent } from '../../components/backlog/pt-list.component';
 import { PresetFilterComponent } from '../../../../shared/components/preset-filter/preset-filter.component';
@@ -26,7 +25,7 @@ import { BacklogRepository } from '../../repositories/backlog.repository';
     templateUrl: 'backlog.page.component.html',
     styleUrls: ['backlog.page.component.css'],
     standalone: true,
-    imports: [PresetFilterComponent, PtListComponent, ModalComponent, FormsModule, NgFor, AsyncPipe],
+    imports: [PresetFilterComponent, PtListComponent, ModalComponent, FormsModule, AsyncPipe],
     providers: [BacklogService, BacklogRepository]
 })
 export class BacklogPageComponent implements OnInit {

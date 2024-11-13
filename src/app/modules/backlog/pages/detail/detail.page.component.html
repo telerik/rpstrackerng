@@ -27,17 +27,17 @@
         </div>
     </div>
 
+    @switch (selectedDetailsScreen) {
+      @case ('tasks') { 
+        <app-item-tasks [tasks$]="tasks$" (addNewTask)="onAddNewTask($event)" (updateTask)="onUpdateTask($event)"></app-item-tasks>
+      }
+      @case ('chitchat') {
+        <app-item-chitchat [comments$]="comments$" [currentUser]="currentUser$ | async" (addNewComment)="onAddNewComment($event)"></app-item-chitchat>
+      }
+      @default {
+        <app-item-form [item]="item" (itemSaved)="onItemSaved($event)" (usersRequested)="onUsersRequested($event)"></app-item-form>
+      }
+    }
 
-    <div [ngSwitch]="selectedDetailsScreen">
-        <ng-template [ngSwitchCase]="'form'">
-            <app-item-form [item]="item" (itemSaved)="onItemSaved($event)" (usersRequested)="onUsersRequested($event)"></app-item-form>
-        </ng-template>
-        <ng-template [ngSwitchCase]="'tasks'">
-            <app-item-tasks [tasks$]="tasks$" (addNewTask)="onAddNewTask($event)" (updateTask)="onUpdateTask($event)"></app-item-tasks>
-        </ng-template>
-        <ng-template [ngSwitchCase]="'chitchat'">
-            <app-item-chitchat [comments$]="comments$" [currentUser]="currentUser$ | async" (addNewComment)="onAddNewComment($event)"></app-item-chitchat>
-        </ng-template>
-    </div>
 </div>
 }
