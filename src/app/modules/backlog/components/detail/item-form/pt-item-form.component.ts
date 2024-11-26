@@ -18,7 +18,6 @@ import { ModalService } from '../../../../../shared/services/modal.service';
     templateUrl: 'pt-item-form.component.html',
     styleUrls: ['pt-item-form.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [FormsModule, ModalComponent, AsyncPipe]
 })
 export class PtItemFormComponent implements OnInit {

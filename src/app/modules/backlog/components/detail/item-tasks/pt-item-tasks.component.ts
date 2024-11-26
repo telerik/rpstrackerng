@@ -13,7 +13,6 @@ import { EMPTY_STRING } from '../../../../../core/helpers/string-helpers';
     templateUrl: 'pt-item-tasks.component.html',
     styleUrls: ['pt-item-tasks.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [FormsModule, AsyncPipe]
 })
 export class PtItemTasksComponent {

@@ -24,7 +24,6 @@ import { BacklogRepository } from '../../repositories/backlog.repository';
     selector: 'app-backlog',
     templateUrl: 'backlog.page.component.html',
     styleUrls: ['backlog.page.component.css'],
-    standalone: true,
     imports: [PresetFilterComponent, PtListComponent, ModalComponent, FormsModule, AsyncPipe],
     providers: [BacklogService, BacklogRepository]
 })

@@ -10,7 +10,6 @@ import { PriorityEnum } from '../../../../core/models/domain/enums';
     templateUrl: 'pt-list.component.html',
     styleUrls: ['pt-list.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [DatePipe]
 })
 export class PtListComponent {

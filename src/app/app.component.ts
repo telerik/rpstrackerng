@@ -7,7 +7,6 @@ import { getUserAvatarUrl } from './core/helpers';
 import { RouterOutlet } from '@angular/router';
 import { MainMenuComponent } from './shared/components/main-menu/main-menu.component';
 import { SideMenuComponent } from './shared/components/side-menu/side-menu.component';
-import { provideHttpClient } from '@angular/common/http';
 import { AppBarComponent } from './shared/components/app-bar/app-bar.component';
 
 const tempCurrentUser = {
@@ -22,8 +21,7 @@ const tempCurrentUser = {
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    standalone: true,
-    imports: [RouterOutlet, MainMenuComponent, SideMenuComponent, AppBarComponent],
+    imports: [RouterOutlet, MainMenuComponent, AppBarComponent]
 })
 export class AppComponent {
   constructor(private store: Store) {

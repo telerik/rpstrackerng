@@ -19,7 +19,6 @@ import { BacklogRepository } from '../../repositories/backlog.repository';
 @Component({
     selector: 'app-backlog-detail-page',
     templateUrl: 'detail.page.component.html',
-    standalone: true,
     imports: [DetailSectionSelectorComponent, PtItemFormComponent, PtItemTasksComponent, PtItemChitchatComponent, AsyncPipe],
     providers: [BacklogService, BacklogRepository]
 })

@@ -13,7 +13,6 @@ import { EMPTY_STRING } from '../../../../../core/helpers/string-helpers';
     templateUrl: 'pt-item-chitchat.component.html',
     styleUrls: ['pt-item-chitchat.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [FormsModule, AsyncPipe, DatePipe]
 })
 export class PtItemChitchatComponent {
