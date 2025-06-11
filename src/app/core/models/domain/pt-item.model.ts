@@ -2,7 +2,7 @@ import { PtObjectBase, PtTask, PtComment, PtUser } from './';
 import { PriorityEnum, StatusEnum } from './enums';
 import { PtItemType } from '../domain/types';
 
-export interface PtItem extends PtObjectBase {
+export type PtItem = PtObjectBase & {
     description?: string;
     type: PtItemType;
     estimate: number;

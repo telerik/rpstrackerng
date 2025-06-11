@@ -1,13 +1,16 @@
 import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { PtItem } from 'src/app/core/models/domain';
-import { ItemType } from 'src/app/core/constants';
-import { PriorityEnum } from 'src/app/core/models/domain/enums';
+
+import { DatePipe } from '@angular/common';
+import { ItemType } from '../../../../core/constants';
+import { PtItem } from '../../../../core/models/domain';
+import { PriorityEnum } from '../../../../core/models/domain/enums';
 
 @Component({
     selector: 'app-list',
     templateUrl: 'pt-list.component.html',
     styleUrls: ['pt-list.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [DatePipe]
 })
 export class PtListComponent {
 

@@ -11,7 +11,9 @@ import { PriorityEnum, StatusEnum } from '../../../core/models/domain/enums';
 import { getUserAvatarUrl } from '../../../core/helpers/user-avatar-helper';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { PresetType } from 'src/app/core/models/domain/types';
+import { PresetType } from '../../../core/models/domain/types';
+import { datesForPtItem, datesForTask } from '../../../core/helpers/date-utils';
+
 
 @Injectable()
 export class BacklogService {
@@ -39,6 +41,7 @@ export class BacklogService {
             .pipe(
                 map((ptItems: PtItem[]) => {
                     ptItems.forEach(i => {
+                        datesForPtItem(i);
                         this.setUserAvatarUrl(i.assignee);
                         i.comments.forEach(c => this.setUserAvatarUrl(c.user));
                     });
@@ -71,6 +74,7 @@ export class BacklogService {
                 tap((ptItem: PtItem) => {
                     this.setUserAvatarUrl(ptItem.assignee);
                     ptItem.comments.forEach(c => this.setUserAvatarUrl(c.user));
+                    ptItem.tasks.forEach(t => datesForTask(t));
                 })
             );
     }
@@ -99,6 +103,7 @@ export class BacklogService {
                          this.store.set('backlogItems', [nextItem, ...this.store.value.backlogItems]);
                      });
                      */
+                    nextItem.tasks.forEach(t => datesForTask(t));
                     resolve(nextItem);
                 }
             );
@@ -129,12 +134,15 @@ export class BacklogService {
             completed: false,
             dateCreated: new Date(),
             dateModified: new Date(),
+            dateStart: newTask.dateStart ? newTask.dateStart : undefined,
+            dateEnd: newTask.dateEnd ? newTask.dateEnd : undefined
         };
         return new Promise<PtTask>((resolve, reject) => {
             this.repo.insertPtTask(
                 task,
                 currentItem.id,
                 (nextTask: PtTask) => {
+                    datesForTask(nextTask);
                     resolve(nextTask);
                 }
             );
@@ -148,12 +156,15 @@ export class BacklogService {
             title: newTitle ? newTitle : task.title,
             completed: toggle ? !task.completed : task.completed,
             dateCreated: task.dateCreated,
-            dateModified: new Date()
+            dateModified: new Date(),
+            dateStart: task.dateStart ? task.dateStart : undefined,
+            dateEnd: task.dateEnd ? task.dateEnd : undefined
         };
 
         return new Promise<PtTask>((resolve, reject) => {
             this.repo.updatePtTask(taskToUpdate, currentItem.id,
                 (updatedTask: PtTask) => {
+                    datesForTask(updatedTask);
                     resolve(updatedTask);
                 }
             );
@@ -169,6 +180,7 @@ export class BacklogService {
                         if (t.id !== task.id) {
                             return t;
                         }
+                        return null;
                     });
                     currentItem.tasks = updatedTasks;
                     resolve(ok);

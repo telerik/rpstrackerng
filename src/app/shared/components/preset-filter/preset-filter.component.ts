@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { NavigationService } from 'src/app/core/services';
-import { PresetType } from 'src/app/core/models/domain/types';
+import { PresetType } from '../../../core/models/domain/types';
+import { NavigationService } from '../../../core/services';
+
 
 @Component({
     selector: 'app-preset-filter',
-    templateUrl: 'preset-filter.component.html'
+    templateUrl: 'preset-filter.component.html',
+    standalone: true
 })
 export class PresetFilterComponent {
 

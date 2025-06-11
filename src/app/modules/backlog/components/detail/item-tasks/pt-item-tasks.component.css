@@ -1,0 +1,18 @@
+.k-button-icon {
+    color: inherit;
+    align-self: center;
+    position: relative;
+}
+
+.k-svg-icon {
+    width: 16px;
+    height: 16px;
+    outline: 0;
+    line-height: 1;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    position: relative;
+}

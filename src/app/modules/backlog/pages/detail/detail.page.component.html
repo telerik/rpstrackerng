@@ -1,21 +1,43 @@
-<div *ngIf="item">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <h1 class="h2">{{ item.title }}</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <app-detail-section-selector [selectedScreen]="selectedDetailsScreen" (screenSelected)="onScreenSelected($event)"></app-detail-section-selector>
+@if(item) { 
+<div>
+
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <!-- Frame13 on the left -->
+          <div class="col-auto">
+            <div class="Frame13 d-flex flex-column align-items-start gap-2" style="width: 700px;">
+              <div class="Label text-center" style="color: #3D3D3D; font-size: 40px; font-family: Roboto; font-weight: 500;">
+                {{ item.title }}
+              </div>
+            </div>
+          </div>
+      
+          <!-- Tools on the right -->
+          <div class="col-auto">
+            <div class="Tools d-flex gap-3">
+              <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <app-detail-section-selector [selectedScreen]="selectedDetailsScreen" (screenSelected)="onScreenSelected($event)"></app-detail-section-selector>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 
+    @switch (selectedDetailsScreen) {
+      @case ('tasks') { 
+        <app-item-tasks [tasks$]="tasks$" (addNewTask)="onAddNewTask($event)" (updateTask)="onUpdateTask($event)"></app-item-tasks>
+      }
+      @case ('chitchat') {
+        <app-item-chitchat [comments$]="comments$" [currentUser]="currentUser$ | async" (addNewComment)="onAddNewComment($event)"></app-item-chitchat>
+      }
+      @default {
+        <app-item-form [item]="item" (itemSaved)="onItemSaved($event)" (usersRequested)="onUsersRequested($event)"></app-item-form>
+      }
+    }
 
-    <div [ngSwitch]="selectedDetailsScreen">
-        <ng-template [ngSwitchCase]="'details'">
-            <app-item-details [item]="item" (itemSaved)="onItemSaved($event)" (usersRequested)="onUsersRequested($event)"></app-item-details>
-        </ng-template>
-        <ng-template [ngSwitchCase]="'tasks'">
-            <app-item-tasks [tasks$]="tasks$" (addNewTask)="onAddNewTask($event)" (updateTask)="onUpdateTask($event)"></app-item-tasks>
-        </ng-template>
-        <ng-template [ngSwitchCase]="'chitchat'">
-            <app-item-chitchat [comments$]="comments$" [currentUser]="currentUser$ | async" (addNewComment)="onAddNewComment($event)"></app-item-chitchat>
-        </ng-template>
-    </div>
 </div>
+}

@@ -1,15 +1,19 @@
-import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { PtItem, PtTask } from '../../../../../core/models/domain';
+import { BehaviorSubject } from 'rxjs';
+
+import { PtTask } from '../../../../../core/models/domain';
 import { PtNewTask, PtTaskUpdate } from '../../../../../shared/models/dto';
 import { EMPTY_STRING } from '../../../../../core/helpers/string-helpers';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'app-item-tasks',
     templateUrl: 'pt-item-tasks.component.html',
     styleUrls: ['pt-item-tasks.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FormsModule, AsyncPipe]
 })
 export class PtItemTasksComponent {
 

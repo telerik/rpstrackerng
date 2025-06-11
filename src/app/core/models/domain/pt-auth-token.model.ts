@@ -1,4 +1,4 @@
-export interface PtAuthToken {
+export type PtAuthToken = {
     access_token: string;
     dateExpires: Date;
 }

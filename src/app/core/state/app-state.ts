@@ -3,7 +3,7 @@ import { PresetType } from '../models/domain/types';
 
 export type StateKey = 'backlogItems' | 'users' | 'currentUser' | 'currentSelectedItem' | 'selectedPreset';
 
-export interface State {
+export type State ={
     backlogItems: PtItem[];
     users: PtUser[];
     currentUser: PtUser | undefined;

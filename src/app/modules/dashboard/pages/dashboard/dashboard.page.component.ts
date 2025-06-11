@@ -3,9 +3,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
 import { DashboardService } from '../../services/dashboard.service';
-import { Store } from 'src/app/core/state/app-store';
+
+import { ActiveIssuesComponent } from '../../components/active-issues/active-issues.component';
+import { AsyncPipe } from '@angular/common';
+import { Store } from '../../../../core/state/app-store';
+import { DashboardFilter } from '../../../../shared/models/dto/stats/dashboard-filter';
 import { StatusCounts } from '../../models';
-import { DashboardFilter } from 'src/app/shared/models/dto/stats/dashboard-filter';
+import { DashboardRepository } from '../../repositories/dashboard.repository';
 
 
 interface DateRange {
@@ -16,7 +20,9 @@ interface DateRange {
 @Component({
     selector: 'app-dashboard',
     templateUrl: 'dashboard.page.component.html',
-    styleUrls: ['dashboard.page.component.css']
+    styleUrls: ['dashboard.page.component.css'],
+    imports: [ActiveIssuesComponent, AsyncPipe],
+    providers: [DashboardService, DashboardRepository]
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
 

@@ -1,9 +1,158 @@
-<div class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0">
-        <img src="assets/img/rpslogo.png" class="logo">
+<div class="DrawerDefault"
+     style="align-self: stretch; border-right: 1px rgba(0, 0, 0, 0.08) solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+
+
+    <a class="DrawerItemSelected" href="/dashboard"
+         style="width: 240px; height: 40px; padding-left: 16px; padding-right: 16px; padding-top: 8px; padding-bottom: 8px; background: #068597; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+     
+             <div class="IconBefore"
+                 style="padding-top: 4px; padding-bottom: 4px; justify-content: center; align-items: center; display: flex">
+
+
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2V5H9.5V2H14ZM6.5 2.00187V8.00187H2V2.00187H6.5ZM14 8V14H9.5V8H14ZM6.5 11V14H2V11H6.5ZM14 1H9.5C8.94781 1 8.5 1.44781 8.5 2V5C8.5 5.55219 8.94781 6 9.5 6H14C14.5522 6 15 5.55219 15 5V2C15 1.44781 14.5522 1 14 1ZM6.5 1.00188H2C1.44781 1.00188 1 1.44969 1 2.00187V8.00187C1 8.55406 1.44781 9.00187 2 9.00187H6.5C7.05219 9.00187 7.5 8.55406 7.5 8.00187V2.00187C7.5 1.44969 7.05219 1.00188 6.5 1.00188ZM14 7H9.5C8.94781 7 8.5 7.44781 8.5 8V14C8.5 14.5522 8.94781 15 9.5 15H14C14.5522 15 15 14.5522 15 14V8C15 7.44781 14.5522 7 14 7ZM6.5 10H2C1.44781 10 1 10.4478 1 11V14C1 14.5522 1.44781 15 2 15H6.5C7.05219 15 7.5 14.5522 7.5 14V11C7.5 10.4478 7.05219 10 6.5 10Z"
+                          fill="white" />
+                </svg>
+
+
+
+            </div>
+            <div class="Label"
+                 style="flex: 1 1 0; color: white; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+                Dashboard
+            </div>
+     
     </a>
-    <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-light" routerLink="/dashboard">Dashboard</a>
-        <a class="p-2 text-light" routerLink="/backlog">Backlog</a>
-    </nav>
+
+
+
+    <a class="DrawerItem" href="/backlog"
+         style="width: 240px; height: 40px; padding-left: 16px; padding-right: 16px; padding-top: 8px; padding-bottom: 8px; background: white; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+        <div class="IconBefore"
+             style="padding-top: 4px; padding-bottom: 4px; justify-content: center; align-items: center; display: flex">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5875 4L6.5875 3H3V12H13V6H4V5H13C13.5531 5 14 5.44688 14 6V12C14 12.5531 13.5531 13 13 13H3C2.44687 13 2 12.5531 2 12V3C2 2.44687 2.44687 2 3 2H7L9 4"
+                      fill="#3D3D3D" />
+            </svg>
+        </div>
+        <div class="Label"
+             style="flex: 1 1 0; color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+            Backlog
+        </div>
+    </a>
+
+
+
+    <a class="DrawerItemHover" href="/backlog/open"
+         style="width: 240px; height: 40px; padding-left: 16px; padding-right: 16px; padding-top: 8px; padding-bottom: 8px; background: rgba(5.90, 133.20, 150.56, 0.08); justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+        <div class="IconBefore"
+             style="padding-top: 4px; padding-bottom: 4px; justify-content: center; align-items: center; display: flex">
+
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 2H6C5.45 2 5 2.45 5 3V8C5 8.55 5.45 9 6 9H14C14.55 9 15 8.55 15 8V3C15 2.45 14.55 2 14 2ZM3 5C3 4.44688 3.44688 4 4 4V10H13C13 10 13 11 12 11H4C3.44688 11 3 10.5531 3 10V5ZM1 7C1 6.44688 1.44687 6 2 6V12H11C11 12 11 13 10 13H2C1.44687 13 1 12.5531 1 12V7ZM6.00313 8L6 7.99687V3.00312L6.00313 3H14L14.0031 3.00312V7.99687L6.00313 8Z"
+                      fill="#3D3D3D" />
+            </svg>
+
+        </div>
+        <div class="Label"
+             style="flex: 1 1 0; color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 19.20px; word-wrap: break-word">
+            Open Items
+        </div>
+    </a>
+
+
+
+    <a class="DrawerItem"  data-bs-toggle="popover" title="Inactive Link" data-bs-content="This link is currently inactive."
+         style="width: 240px; height: 40px; padding-left: 16px; padding-right: 16px; padding-top: 8px; padding-bottom: 8px; background: white; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+        <div class="IconBefore"
+             style="padding-top: 4px; padding-bottom: 4px; justify-content: center; align-items: center; display: flex">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.97188 5.875L15 6.325L11.1875 9.81563L12.3375 15L8 12.2344L3.6625 15L4.8125 9.81563L1 6.325L6.02812 5.875L8 1L9.97188 5.875ZM5.16249 12.8594L7.99999 11.05L10.8406 12.8594L10.0875 9.46875L12.6531 7.11875L9.27499 6.81563L7.99999 3.66563L6.72499 6.81563L3.34686 7.11875L5.91249 9.46875L5.16249 12.8594Z"
+                      fill="#3D3D3D" />
+            </svg>
+
+        </div>
+        <div class="Label"
+             style="flex: 1 1 0; color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+            Goals
+        </div>
+    </a>
+
+
+
+    <a class="DrawerItem" style="width: 240px; height: 40px; padding-left: 16px; padding-right: 16px; padding-top: 8px; padding-bottom: 8px; background: white; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex" data-bs-toggle="popover" title="Inactive Link" data-bs-content="This link is currently inactive.">
+        <div class="IconBefore" style="padding-top: 4px; padding-bottom: 4px; justify-content: center; align-items: center; display: flex">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 14V15H1V1H2V14H15ZM7 9.125L11 11.125L15 8.125V7L11 10L7 8L3 11V12.125L7 9.125ZM7 4.125L11 7L15 5.125V4L11 5.875L7 3L3 5V6.125L7 4.125Z" fill="#3D3D3D" />
+            </svg>
+        </div>
+        <div class="Label" style="flex: 1 1 0; color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+            Reports
+        </div>
+        <div class="IconAfter" style="padding-top: 4px; padding-bottom: 4px; justify-content: center; align-items: center; display: flex">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.9393 4.93945L7.99997 8.87883L4.06056 4.93945L3 6.00011L7.99997 11.0001L13 6.00011L11.9393 4.93945Z" fill="#3D3D3D" />
+            </svg>
+        </div>
+    </a>
+
+
+
+
+    <div class="DrawerItem"  data-bs-toggle="popover" title="Inactive Link" data-bs-content="This link is currently inactive."
+         style="width: 240px; height: 40px; padding-top: 8px; padding-bottom: 8px; padding-left: 48px; padding-right: 16px; background: white; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+        <div class="Label"
+             style="flex: 1 1 0; color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+            Current Month
+        </div>
+    </div>
+
+
+
+
+    <div class="DrawerItem"  data-bs-toggle="popover" title="Inactive Link" data-bs-content="This link is currently inactive."
+         style="width: 240px; height: 40px; padding-top: 8px; padding-bottom: 8px; padding-left: 48px; padding-right: 16px; background: white; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+        <div class="Label"
+             style="flex: 1 1 0; color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+            Last Quarter
+        </div>
+    </div>
+
+
+
+
+    <div class="DrawerItem"  data-bs-toggle="popover" title="Inactive Link" data-bs-content="This link is currently inactive."
+         style="width: 240px; height: 40px; padding-top: 8px; padding-bottom: 8px; padding-left: 48px; padding-right: 16px; background: white; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+        <div class="Label"
+             style="flex: 1 1 0; color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+            Social Engagement
+        </div>
+    </div>
+
+
+
+    <div class="DrawerItem"  data-bs-toggle="popover" title="Inactive Link" data-bs-content="This link is currently inactive."
+         style="width: 240px; height: 40px; padding-top: 8px; padding-bottom: 8px; padding-left: 48px; padding-right: 16px; background: white; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+        <div class="Label"
+             style="flex: 1 1 0; color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+            Year-end Sale
+        </div>
+    </div>
+
+
+    <a class="DrawerItem"  data-bs-toggle="popover" title="Inactive Link" data-bs-content="This link is currently inactive."
+         style="width: 240px; height: 40px; padding-left: 16px; padding-right: 16px; padding-top: 8px; padding-bottom: 8px; background: white; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+        <div class="IconBefore"
+             style="padding-top: 4px; padding-bottom: 4px; justify-content: center; align-items: center; display: flex">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 2C9.10281 2 10 2.89719 10 4C10 5.10281 9.10281 6 8 6C6.89719 6 6 5.10281 6 4C6 2.89719 6.89719 2 8 2ZM8 1C6.34375 1 5 2.34375 5 4C5 5.65625 6.34375 7 8 7C9.65625 7 11 5.65625 11 4C11 2.34375 9.65625 1 8 1ZM8 9C9.335 9 10.5903 9.52031 11.535 10.465C12.4797 11.4097 13 12.665 13 14H3C3 12.665 3.52031 11.4097 4.465 10.465C5.40969 9.52031 6.665 9 8 9ZM8 8C4.6875 8 2 10.6875 2 14C2 14.5531 2.44687 15 3 15H13C13.5531 15 14 14.5531 14 14C14 10.6875 11.3125 8 8 8Z"
+                      fill="#3D3D3D" />
+            </svg>
+
+        </div>
+        <div class="Label"
+             style="flex: 1 1 0; color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+            Users
+        </div>
+    </a>
 </div>

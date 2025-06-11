@@ -3,7 +3,9 @@ import { LogEntry } from '../models/core';
 import { LoggingLevelEnum } from '../models/enums';
 import { environment as env } from '../../../environments/environment';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root', // Makes it available globally
+})
 export class LoggerService {
     private logs: LogEntry[] = [];
 

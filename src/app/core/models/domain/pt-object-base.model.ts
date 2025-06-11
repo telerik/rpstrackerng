@@ -1,4 +1,4 @@
-export interface PtObjectBase {
+export type PtObjectBase = {
     id: number;
     title?: string;
     dateCreated: Date;

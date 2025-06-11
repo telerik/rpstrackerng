@@ -1,6 +1,6 @@
 import { LoggingLevelEnum } from '../enums';
 
-export interface LogEntry {
+export type LogEntry = {
     message: string;
     level: LoggingLevelEnum;
 }

@@ -11,14 +11,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of items" (click)="listItemTap(item)" class="pt-table-row">
-                <td><img [src]="getIndicatorImage(item)" class="backlog-icon"></td>
-                <td><img *ngIf="item.assignee" [src]="item.assignee.avatar" class="li-avatar rounded mx-auto d-block" /></td>
-                <td><span class="li-title">{{ item.title }}</span></td>
-                <td><span [class]="'badge ' + getPriorityClass(item)">{{ item.priority }}</span></td>
-                <td><span class="li-estimate">{{ item.estimate }}</span></td>
-                <td><span class="li-date">{{ item.dateCreated | date }}</span></td>
-            </tr>
+            @for (item of items; track item.id) {
+                <tr (click)="listItemTap(item)" class="pt-table-row">
+                    <td><img [src]="getIndicatorImage(item)" class="backlog-icon"></td>
+                    <td>
+                        @if(item.assignee) { 
+                            <img [src]="item.assignee.avatar" class="li-avatar rounded mx-auto d-block" /> 
+                        }
+                    </td>
+                    <td><span class="li-title">{{ item.title }}</span></td>
+                    <td><span [class]="'badge ' + getPriorityClass(item)">{{ item.priority }}</span></td>
+                    <td><span class="li-estimate">{{ item.estimate }}</span></td>
+                    <td><span class="li-date">{{ item.dateCreated | date }}</span></td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

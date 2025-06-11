@@ -1,15 +1,19 @@
-import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter, ViewContainerRef } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { PtItem, PtComment, PtUser, PtTask } from '../../../../../core/models/domain';
+import { BehaviorSubject } from 'rxjs';
+
+import { PtComment, PtUser } from '../../../../../core/models/domain';
 import { PtNewComment } from '../../../../../shared/models/dto';
 import { EMPTY_STRING } from '../../../../../core/helpers/string-helpers';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'app-item-chitchat',
     templateUrl: 'pt-item-chitchat.component.html',
     styleUrls: ['pt-item-chitchat.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FormsModule, AsyncPipe, DatePipe]
 })
 export class PtItemChitchatComponent {
 
@@ -23,6 +27,7 @@ export class PtItemChitchatComponent {
         if (this.currentUser) {
             return this.currentUser.avatar;
         }
+        return EMPTY_STRING;;
     }
 
     public onAddTapped() {
@@ -35,9 +40,5 @@ export class PtItemChitchatComponent {
         };
         this.addNewComment.emit(newComment);
         this.newCommentText = EMPTY_STRING;
-    }
-
-    public onTextFieldTap() {
-
     }
 }
